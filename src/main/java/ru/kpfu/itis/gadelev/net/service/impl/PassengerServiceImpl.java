@@ -26,8 +26,8 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public void save(Passenger passenger) {
-dao.save(new Passenger(
+    public boolean save(Passenger passenger) {
+return dao.save(new Passenger(
         passenger.getName(),
         passenger.getSurname(),
         passenger.getLogin(),

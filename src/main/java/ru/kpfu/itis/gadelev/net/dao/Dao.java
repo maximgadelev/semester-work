@@ -3,10 +3,10 @@ package ru.kpfu.itis.gadelev.net.dao;
 import java.util.List;
 
 public interface Dao<T> {
-    T get(int id);
+    T get(String login);
 
     List<T> getAll();
 
-    void save(T t);
+    boolean save(T t);
 }
 

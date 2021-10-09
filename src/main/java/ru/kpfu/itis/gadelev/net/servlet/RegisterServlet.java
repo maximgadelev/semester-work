@@ -13,24 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name="registerServlet",urlPatterns = "/register")
+@WebServlet(urlPatterns = "/registration")
 public class RegisterServlet extends HttpServlet {
     private final PassengerService passengerService = new PassengerServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("register.jsp").forward(req,resp);
+       resp.sendRedirect("registeration.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
-        String surname =req.getParameter("surname");
-        String login = req.getParameter("login");
-        String password=req.getParameter("password");
 
-        Passenger passenger = new Passenger(name,surname,login,password);
-            passengerService.save(passenger);
-            resp.sendRedirect("passengers.ftl");
+            boolean saveResult = passengerService.save(new Passenger(req.getParameter("name"),req.getParameter("surname"),req.getParameter("login"),req.getParameter("password")));
+            if(saveResult){
+                resp.sendRedirect("/login");
+            }else {
+                resp.sendRedirect("/registration");
+            }
 
     }
 }

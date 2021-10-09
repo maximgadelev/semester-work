@@ -10,6 +10,6 @@ public interface PassengerService<T> {
 
     List<PassengerDto> getAll();
 
-    void save(Passenger passenger);
+    boolean save(Passenger passenger);
 }
 

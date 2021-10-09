@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-@WebServlet(name = "passengerServlet",urlPatterns = "/passengers")
+@WebServlet(urlPatterns = "/passengers")
 public class PassengerServlet extends HttpServlet {
     private final PassengerService passengerService = new PassengerServiceImpl();
 

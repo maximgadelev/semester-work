@@ -14,8 +14,25 @@ public class PassengerDaoImpl implements Dao<Passenger> {
     private static final Logger LOGGER = LoggerFactory.getLogger(PassengerDaoImpl.class);
     private final Connection connection = PostgresConnectionHelper.getConnection();
 
-    public Passenger get(int id) {
-        return null;
+    public Passenger get(String  login) {
+      try{
+          PreparedStatement preparedStatement =connection.prepareStatement("SELECT * FROM passengers where login = ?");
+preparedStatement.setString(1,login);
+ResultSet resultSet =preparedStatement.executeQuery();
+if(resultSet.next()){
+    Passenger passenger=new Passenger(resultSet.getInt("passenger_id"),
+            resultSet.getString("name"),
+            resultSet.getString("surname"),
+            resultSet.getString("login"),
+            resultSet.getString("password"),
+            resultSet.getDouble("rating"));
+    return passenger;
+}
+return null;
+      }catch (SQLException e){
+          LOGGER.warn("Failed get passenger",e);
+      }
+      return null;
     }
 
     public List<Passenger> getAll() {
@@ -45,7 +62,7 @@ public class PassengerDaoImpl implements Dao<Passenger> {
         }
     }
 
-    public void save(Passenger passenger) {
+    public boolean save(Passenger passenger) {
         String sql = "INSERT INTO passengers (name, surname, login, password) VALUES (?, ?, ?, ?);";
 
         try {
@@ -55,8 +72,10 @@ public class PassengerDaoImpl implements Dao<Passenger> {
             preparedStatement.setString(3, passenger.getLogin());
             preparedStatement.setString(4, passenger.getPassword());
             preparedStatement.executeUpdate();
+            return true;
         } catch (SQLException throwables) {
             LOGGER.warn("Failed to save new user.", throwables);
+            return false;
         }
     }
     }
