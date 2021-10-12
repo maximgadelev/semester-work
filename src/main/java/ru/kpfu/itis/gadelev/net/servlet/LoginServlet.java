@@ -31,7 +31,8 @@ private final Dao<Passenger> passengerDao = new PassengerDaoImpl();
         String password = PasswordHelper.encrypt(req.getParameter("password"));
         Passenger passenger = passengerDao.get(login);
         if(password.equals(passenger.getPassword())){
-            resp.sendRedirect("/passengers");
+        req.getSession().setAttribute("login",passenger);
+            resp.sendRedirect("passengers.ftl");
         }else {
             resp.sendRedirect("/login");
         }

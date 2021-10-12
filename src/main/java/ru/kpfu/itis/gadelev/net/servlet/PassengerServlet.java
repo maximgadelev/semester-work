@@ -11,18 +11,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-@WebServlet(urlPatterns = "/passengers")
+@WebServlet(urlPatterns = "/passenger")
 public class PassengerServlet extends HttpServlet {
     private final PassengerService passengerService = new PassengerServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<PassengerDto> passengers = passengerService.getAll();
-        req.setAttribute("passengers",passengers);
-        req.getRequestDispatcher("passengers.ftl").forward(req,resp);
+        HttpSession httpSession = req.getSession();
+       req.setAttribute("passenger",httpSession.getAttribute("passenger"));
+       resp.sendRedirect("");
     }
 
 }
