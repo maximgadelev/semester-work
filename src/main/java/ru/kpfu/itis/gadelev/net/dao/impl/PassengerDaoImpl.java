@@ -25,7 +25,9 @@ if(resultSet.next()){
             resultSet.getString("surname"),
             resultSet.getString("login"),
             resultSet.getString("password"),
-            resultSet.getDouble("rating"));
+            resultSet.getDouble("rating"),
+            resultSet.getString("date_of_birth")
+    );
     return passenger;
 }
 return null;
@@ -50,7 +52,8 @@ return null;
                         resultSet.getString("surname"),
                         resultSet.getString("login"),
                         resultSet.getString("password"),
-                        resultSet.getDouble("rating")
+                        resultSet.getDouble("rating"),
+                        resultSet.getString("date_of_birth")
                 );
                 passengers.add(passenger);
             }
@@ -63,7 +66,7 @@ return null;
     }
 
     public boolean save(Passenger passenger) {
-        String sql = "INSERT INTO passengers (name, surname, login, password) VALUES (?, ?, ?, ?);";
+        String sql = "INSERT INTO passengers (name, surname, login, password,rating,date_of_birth) VALUES (?, ?, ?, ?, ?, ?);";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -71,6 +74,8 @@ return null;
             preparedStatement.setString(2, passenger.getSurname());
             preparedStatement.setString(3, passenger.getLogin());
             preparedStatement.setString(4, passenger.getPassword());
+            preparedStatement.setDouble(5,passenger.getRating());
+            preparedStatement.setString(6,passenger.getDateOfBirth());
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException throwables) {

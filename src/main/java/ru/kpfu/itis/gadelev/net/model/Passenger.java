@@ -7,21 +7,34 @@ public class Passenger {
     private String login;
     private String password;
     private double rating;
+    private String dateOfBirth;
 
-    public Passenger(int id, String name, String surname, String login, String password, double rating) {
+    public Passenger(int id, String name, String surname, String login, String password, double rating,String dateOfBirth) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.password = password;
         this.rating = rating;
+        this.dateOfBirth=dateOfBirth;
     }
 
-    public Passenger(String name, String surname, String login, String password) {
+    public Passenger(String name, String surname, String login, String password,String dateOfBirth,  Double rating) {
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.password = password;
+        this.dateOfBirth=dateOfBirth;
+        this.rating = rating;
+
+    }
+
+    public Passenger(String name, String surname, String login, String password, String dateOfBirth) {
+        this.name = name;
+        this.surname = surname;
+        this.login = login;
+        this.password = password;
+        this.dateOfBirth=dateOfBirth;
     }
 
     public int getId() {
@@ -70,5 +83,13 @@ public class Passenger {
 
     public void setRating(double rating) {
         this.rating = rating;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }

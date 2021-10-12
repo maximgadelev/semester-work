@@ -22,7 +22,7 @@ private final Dao<Passenger> passengerDao = new PassengerDaoImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("login.html");
+        req.getRequestDispatcher("login.ftl").forward(req,resp);
     }
 
     @Override
@@ -31,8 +31,8 @@ private final Dao<Passenger> passengerDao = new PassengerDaoImpl();
         String password = PasswordHelper.encrypt(req.getParameter("password"));
         Passenger passenger = passengerDao.get(login);
         if(password.equals(passenger.getPassword())){
-        req.getSession().setAttribute("login",passenger);
-            resp.sendRedirect("passengers.ftl");
+        req.getSession().setAttribute("passenger",passenger);
+            req.getRequestDispatcher("main.ftl").forward(req,resp);
         }else {
             resp.sendRedirect("/login");
         }

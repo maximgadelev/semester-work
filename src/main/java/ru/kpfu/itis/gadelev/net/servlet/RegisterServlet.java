@@ -16,13 +16,13 @@ public class RegisterServlet extends HttpServlet {
     private final PassengerService passengerService = new PassengerServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       resp.sendRedirect("registeration.jsp");
+       resp.sendRedirect("registration.ftl");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-            boolean saveResult = passengerService.save(new Passenger(req.getParameter("name"),req.getParameter("surname"),req.getParameter("login"),req.getParameter("password")));
+            boolean saveResult = passengerService.save(new Passenger(req.getParameter("name"),req.getParameter("surname"),req.getParameter("login"),req.getParameter("password"),req.getParameter("dateOfBirth")));
             if(saveResult){
                 resp.sendRedirect("/login");
             }else {

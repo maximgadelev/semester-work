@@ -21,7 +21,7 @@ public class PassengerServiceImpl implements PassengerService {
     public List<PassengerDto> getAll() {
         List<Passenger> passengers =dao.getAll();
         return passengers.stream()
-                .map(p -> new PassengerDto(p.getName(), p.getSurname(), p.getLogin(),p.getRating()))
+                .map(p -> new PassengerDto(p.getName(), p.getSurname(), p.getLogin(),p.getRating(),p.getDateOfBirth()))
                 .collect(Collectors.toList());
     }
 
@@ -31,7 +31,8 @@ return dao.save(new Passenger(
         passenger.getName(),
         passenger.getSurname(),
         passenger.getLogin(),
-        PasswordHelper.encrypt(passenger.getPassword())
+        PasswordHelper.encrypt(passenger.getPassword()),
+        passenger.getDateOfBirth()
 ));
     }
 }
