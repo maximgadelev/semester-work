@@ -66,7 +66,7 @@ return null;
     }
 
     public boolean save(Passenger passenger) {
-        String sql = "INSERT INTO passengers (name, surname, login, password,rating,date_of_birth) VALUES (?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO passengers (name, surname, login, password,date_of_birth) VALUES (?, ?, ?, ?, ?);";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -74,12 +74,11 @@ return null;
             preparedStatement.setString(2, passenger.getSurname());
             preparedStatement.setString(3, passenger.getLogin());
             preparedStatement.setString(4, passenger.getPassword());
-            preparedStatement.setDouble(5,passenger.getRating());
-            preparedStatement.setString(6,passenger.getDateOfBirth());
+            preparedStatement.setString(5,passenger.getDateOfBirth());
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException throwables) {
-            LOGGER.warn("Failed to save new user.", throwables);
+            LOGGER.warn("Failed to save new driver-user", throwables);
             return false;
         }
     }
