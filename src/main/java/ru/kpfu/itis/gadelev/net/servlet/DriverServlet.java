@@ -5,13 +5,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-@WebServlet("/logout")
-public class LogoutServlet extends HttpServlet {
+
+@WebServlet("/driver")
+public class DriverServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().removeAttribute("passenger");
-        req.getSession().removeAttribute("driver");
-        req.getRequestDispatcher("login.ftl").forward(req,resp);
+        HttpSession httpSession = req.getSession();
+        req.setAttribute("driver",httpSession.getAttribute("driver"));
+        req.getRequestDispatcher("driver.ftl").forward(req, resp);
     }
 }

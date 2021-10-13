@@ -4,6 +4,7 @@
 <@common.htmlTemplate pageName="Passenger">
 <@navigation.loggedUser/>
     <#if passenger?has_content>
+        <h3>You are passenger!Welcome!</h3>
         <p>Firstname: ${passenger.name}</p>
         <p>Surname: ${passenger.surname}</p>
         <p>Login: ${passenger.login}</p>

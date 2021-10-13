@@ -6,7 +6,6 @@ import ru.kpfu.itis.gadelev.net.dao.impl.PassengerDaoImpl;
 import ru.kpfu.itis.gadelev.net.dto.DriverDto;
 import ru.kpfu.itis.gadelev.net.helper.PasswordHelper;
 import ru.kpfu.itis.gadelev.net.model.Driver;
-import ru.kpfu.itis.gadelev.net.model.Passenger;
 import ru.kpfu.itis.gadelev.net.service.DriverService;
 
 import java.util.List;

@@ -15,6 +15,8 @@
         Date of Birth:
         <input name ="dateOfBirth" type="text" autocomplete="off" minlength="10" maxlength="10" pattern="^(?:0[1-9]|[12]\d|3[01])([\/.-])(?:0[1-9]|1[012])\1(?:19|20)\d\d$" required>
         <br>
+        <p><input type="radio" name="check" id="passenger" value="passenger">Register as Passenger!</p>
+        <p><input type="radio" name="check" id="driver" value="driver">Register as Driver!</p>
         <input type="submit" value="register">
     </form>
 </#macro>

@@ -24,7 +24,7 @@ public class DriverDaoImpl implements Dao<Driver> {
             preparedStatement.setString(1,login);
             ResultSet resultSet =preparedStatement.executeQuery();
             if(resultSet.next()){
-                Driver driver=new Driver(resultSet.getInt("passenger_id"),
+                Driver driver=new Driver(resultSet.getInt("driver_id"),
                         resultSet.getString("name"),
                         resultSet.getString("surname"),
                         resultSet.getString("login"),
