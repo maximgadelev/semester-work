@@ -20,7 +20,8 @@ public class PassengerDaoImpl implements Dao<Passenger> {
 preparedStatement.setString(1,login);
 ResultSet resultSet =preparedStatement.executeQuery();
 if(resultSet.next()){
-    Passenger passenger=new Passenger(resultSet.getInt("passenger_id"),
+    Passenger passenger=new Passenger(
+            resultSet.getInt("passenger_id"),
             resultSet.getString("name"),
             resultSet.getString("surname"),
             resultSet.getString("login"),
@@ -66,7 +67,7 @@ return null;
     }
 
     public boolean save(Passenger passenger) {
-        String sql = "INSERT INTO passengers (name, surname, login, password,date_of_birth) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO passengers (name, surname, login, password,date_of_birth,profile_image) VALUES (?, ?, ?, ?, ?,?);";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -75,6 +76,7 @@ return null;
             preparedStatement.setString(3, passenger.getLogin());
             preparedStatement.setString(4, passenger.getPassword());
             preparedStatement.setString(5,passenger.getDateOfBirth());
+
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException throwables) {

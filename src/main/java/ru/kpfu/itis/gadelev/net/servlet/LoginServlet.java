@@ -45,6 +45,7 @@ private final Dao<Driver> driverDao = new DriverDaoImpl();
             if(driver!=null) {
                 if (password.equals(driver.getPassword())) {
                     req.getSession().setAttribute("driver", driver);
+                    resp.addCookie(new Cookie("id",String.valueOf(driver.getId())));
                     req.getRequestDispatcher("main.ftl").forward(req, resp);
                 } else {
                     resp.sendRedirect("/login");

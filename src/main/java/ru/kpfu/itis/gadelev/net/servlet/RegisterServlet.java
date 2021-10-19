@@ -26,10 +26,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
             String value= req.getParameter("check");
-
             if(value.equals("passenger")){
                 boolean saveResultPassenger = passengerService.save(new Passenger(req.getParameter("name"),req.getParameter("surname"),req.getParameter("login"),req.getParameter("password"),req.getParameter("dateOfBirth")));
                 if(saveResultPassenger){

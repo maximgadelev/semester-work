@@ -10,6 +10,17 @@
         <p>Login: ${driver.login}</p>
         <p>Rating: ${driver.rating}</p>
         <p>Date of Birth:${driver.dateOfBirth}</p>
+        <br>
+        <form action="/addCar" method="get">
+        <input type="submit" value="Add new car">
+        <br>
+        </form>
     </#if>
 
+    <#if car?has_content>
+        <p>Number of your car:${car.number}</p>
+        <p>Brand of your car :${car.brand}</p>
+<#else>
+        <p>You dont have car</p>
+    </#if>
 </@common.htmlTemplate>

@@ -5,4 +5,5 @@
 <@common.htmlTemplate pageName="Login">
     <@navigation.unloggedUser/>
     <@login.loginTemplate/>
+
 </@common.htmlTemplate>

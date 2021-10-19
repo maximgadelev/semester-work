@@ -6,7 +6,7 @@
 </#macro>
 <#macro loggedDriver>
     <a href="main.ftl">Main</a>
-    <a href="driver.ftl">Driver</a>
+    <a href="/driver">Driver</a>
     <a href="/logout">Logout</a>
     <br>
 </#macro>
@@ -18,7 +18,7 @@
 </#macro>
 <#macro loggedUser>
     <a href="main.ftl">Main</a>
-    <a href="driver.ftl">Driver</a>
+    <a href="/driver">Driver</a>
     <a href="/logout">Logout</a>
     <br>
 </#macro>

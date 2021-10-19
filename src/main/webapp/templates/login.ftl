@@ -1,3 +1,4 @@
+
 <#macro loginTemplate>
 <form action="/login" method ="post">
         Login:
@@ -8,4 +9,6 @@
         <br>
         <input type="submit" value="Log in">
 </form>
+
+        </head>
 </#macro>
