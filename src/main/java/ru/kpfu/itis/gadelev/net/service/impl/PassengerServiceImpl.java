@@ -1,7 +1,7 @@
 package ru.kpfu.itis.gadelev.net.service.impl;
 
-import ru.kpfu.itis.gadelev.net.dao.Dao;
-import ru.kpfu.itis.gadelev.net.dao.impl.PassengerDaoImpl;
+import ru.kpfu.itis.gadelev.net.dao.UserDao;
+import ru.kpfu.itis.gadelev.net.dao.impl.PassengerUserDaoImpl;
 import ru.kpfu.itis.gadelev.net.dto.PassengerDto;
 import ru.kpfu.itis.gadelev.net.helper.PasswordHelper;
 import ru.kpfu.itis.gadelev.net.model.Passenger;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PassengerServiceImpl implements PassengerService {
-    private final Dao<Passenger> dao = new PassengerDaoImpl();
+    private final UserDao<Passenger> userDao = new PassengerUserDaoImpl();
     @Override
     public PassengerDto get(int id) {
         return null;
@@ -19,7 +19,7 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public List<PassengerDto> getAll() {
-        List<Passenger> passengers =dao.getAll();
+        List<Passenger> passengers = userDao.getAll();
         return passengers.stream()
                 .map(p -> new PassengerDto(p.getName(), p.getSurname(), p.getLogin(),p.getRating(),p.getDateOfBirth()))
                 .collect(Collectors.toList());
@@ -27,7 +27,7 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public boolean save(Passenger passenger) {
-return dao.save(new Passenger(
+return userDao.save(new Passenger(
         passenger.getName(),
         passenger.getSurname(),
         passenger.getLogin(),

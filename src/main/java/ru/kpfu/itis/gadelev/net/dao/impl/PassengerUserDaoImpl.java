@@ -1,7 +1,7 @@
 package ru.kpfu.itis.gadelev.net.dao.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.kpfu.itis.gadelev.net.dao.Dao;
+import ru.kpfu.itis.gadelev.net.dao.UserDao;
 import ru.kpfu.itis.gadelev.net.helper.PostgresConnectionHelper;
 import ru.kpfu.itis.gadelev.net.model.Passenger;
 
@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PassengerDaoImpl implements Dao<Passenger> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PassengerDaoImpl.class);
+public class PassengerUserDaoImpl implements UserDao<Passenger> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(PassengerUserDaoImpl.class);
     private final Connection connection = PostgresConnectionHelper.getConnection();
 
     public Passenger get(String  login) {
@@ -80,7 +80,7 @@ return null;
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException throwables) {
-            LOGGER.warn("Failed to save new driver-user", throwables);
+            LOGGER.warn("Failed to save new passenger-user", throwables);
             return false;
         }
     }

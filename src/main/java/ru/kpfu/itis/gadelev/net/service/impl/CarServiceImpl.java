@@ -1,7 +1,6 @@
 package ru.kpfu.itis.gadelev.net.service.impl;
 
 import ru.kpfu.itis.gadelev.net.dao.CarDao;
-import ru.kpfu.itis.gadelev.net.dao.Dao;
 import ru.kpfu.itis.gadelev.net.dao.impl.CarDaoImpl;
 import ru.kpfu.itis.gadelev.net.dto.CarDto;
 import ru.kpfu.itis.gadelev.net.model.Car;

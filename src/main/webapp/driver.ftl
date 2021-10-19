@@ -11,16 +11,27 @@
         <p>Rating: ${driver.rating}</p>
         <p>Date of Birth:${driver.dateOfBirth}</p>
         <br>
-        <form action="/addCar" method="get">
-        <input type="submit" value="Add new car">
-        <br>
-        </form>
     </#if>
 
     <#if car?has_content>
         <p>Number of your car:${car.number}</p>
         <p>Brand of your car :${car.brand}</p>
+        <p>Model of your car:${car.model}</p>
 <#else>
         <p>You dont have car</p>
+    <br>
+    <form action="/addCar">
+        <button type="submit">Add new car</button>
+        <br>
+    </form>
+    </#if>
+
+    <#if trip?has_content>
+        <p>Your trip date:${trip.date}<p>
+<#--        <#else>-->
+<#--            <form action="/addTrip">-->
+<#--            <button type="submit">Add new trip</button>-->
+<#--            <br>-->
+<#--            </form>-->
     </#if>
 </@common.htmlTemplate>

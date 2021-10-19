@@ -18,7 +18,6 @@ public class AddCarServlet extends HttpServlet {
     CarService carService = new CarServiceImpl();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Object driver = req.getSession().getAttribute("driver");
         Cookie[] cookies = req.getCookies();
         int driver_id=0;
         for (Cookie cookie : cookies) {

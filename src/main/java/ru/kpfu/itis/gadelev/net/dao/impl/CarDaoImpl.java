@@ -3,7 +3,6 @@ package ru.kpfu.itis.gadelev.net.dao.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.kpfu.itis.gadelev.net.dao.CarDao;
-import ru.kpfu.itis.gadelev.net.dao.Dao;
 import ru.kpfu.itis.gadelev.net.helper.PostgresConnectionHelper;
 import ru.kpfu.itis.gadelev.net.model.Car;
 
@@ -14,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class CarDaoImpl implements CarDao<Car> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PassengerDaoImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PassengerUserDaoImpl.class);
     private final Connection connection = PostgresConnectionHelper.getConnection();
     @Override
     public Car get(int driverId) {
@@ -22,7 +21,6 @@ public class CarDaoImpl implements CarDao<Car> {
             PreparedStatement preparedStatement =connection.prepareStatement("SELECT * FROM cars where driver_id= ?");
             preparedStatement.setInt(1,driverId);
             ResultSet resultSet =preparedStatement.executeQuery();
-
             if(resultSet.next()){
                 return new Car(resultSet.getInt("car_id"),
                         resultSet.getInt(driverId),
@@ -58,7 +56,7 @@ public class CarDaoImpl implements CarDao<Car> {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException throwables) {
-            LOGGER.warn("Failed to save new driver-user", throwables);
+            LOGGER.warn("Failed to save new car", throwables);
             return false;
         }
     }

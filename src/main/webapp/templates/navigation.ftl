@@ -18,7 +18,7 @@
 </#macro>
 <#macro loggedUser>
     <a href="main.ftl">Main</a>
-    <a href="/driver">Driver</a>
+    <a href="/passenger">Passenger</a>
     <a href="/logout">Logout</a>
     <br>
 </#macro>

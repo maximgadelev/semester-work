@@ -3,9 +3,9 @@ package ru.kpfu.itis.gadelev.net.servlet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.kpfu.itis.gadelev.net.dao.Dao;
-import ru.kpfu.itis.gadelev.net.dao.impl.DriverDaoImpl;
-import ru.kpfu.itis.gadelev.net.dao.impl.PassengerDaoImpl;
+import ru.kpfu.itis.gadelev.net.dao.UserDao;
+import ru.kpfu.itis.gadelev.net.dao.impl.DriverUserDaoImpl;
+import ru.kpfu.itis.gadelev.net.dao.impl.PassengerUserDaoImpl;
 import ru.kpfu.itis.gadelev.net.helper.PasswordHelper;
 import ru.kpfu.itis.gadelev.net.model.Driver;
 import ru.kpfu.itis.gadelev.net.model.Passenger;
@@ -17,8 +17,8 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
-private final Dao<Passenger> passengerDao = new PassengerDaoImpl();
-private final Dao<Driver> driverDao = new DriverDaoImpl();
+private final UserDao<Passenger> passengerUserDao = new PassengerUserDaoImpl();
+private final UserDao<Driver> driverUserDao = new DriverUserDaoImpl();
     private static final Logger logger = LoggerFactory.getLogger(LoginServlet.class);
 
 
@@ -32,7 +32,7 @@ private final Dao<Driver> driverDao = new DriverDaoImpl();
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = PasswordHelper.encrypt(req.getParameter("password"));
-            Passenger passenger = passengerDao.get(login);
+            Passenger passenger = passengerUserDao.get(login);
             if(passenger!=null) {
                 if (password.equals(passenger.getPassword())) {
                     req.getSession().setAttribute("passenger", passenger);
@@ -41,7 +41,7 @@ private final Dao<Driver> driverDao = new DriverDaoImpl();
                     resp.sendRedirect("/login");
                 }
             }else{
-            Driver driver = driverDao.get(login);
+            Driver driver = driverUserDao.get(login);
             if(driver!=null) {
                 if (password.equals(driver.getPassword())) {
                     req.getSession().setAttribute("driver", driver);

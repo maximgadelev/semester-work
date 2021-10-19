@@ -1,8 +1,7 @@
 package ru.kpfu.itis.gadelev.net.service.impl;
 
-import ru.kpfu.itis.gadelev.net.dao.Dao;
-import ru.kpfu.itis.gadelev.net.dao.impl.DriverDaoImpl;
-import ru.kpfu.itis.gadelev.net.dao.impl.PassengerDaoImpl;
+import ru.kpfu.itis.gadelev.net.dao.UserDao;
+import ru.kpfu.itis.gadelev.net.dao.impl.DriverUserDaoImpl;
 import ru.kpfu.itis.gadelev.net.dto.DriverDto;
 import ru.kpfu.itis.gadelev.net.helper.PasswordHelper;
 import ru.kpfu.itis.gadelev.net.model.Driver;
@@ -11,7 +10,7 @@ import ru.kpfu.itis.gadelev.net.service.DriverService;
 import java.util.List;
 
 public class DriverServiceImpl implements DriverService {
-    private final Dao<Driver> dao = new DriverDaoImpl();
+    private final UserDao<Driver> userDao = new DriverUserDaoImpl();
 
     @Override
     public DriverDto get(int id) {
@@ -25,7 +24,7 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public boolean save(Driver driver) {
-        return dao.save(new Driver(
+        return userDao.save(new Driver(
                 driver.getName(),
                 driver.getSurname(),
                 driver.getLogin(),
