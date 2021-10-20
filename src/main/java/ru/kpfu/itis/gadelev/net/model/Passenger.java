@@ -8,6 +8,7 @@ public class Passenger {
     private String password;
     private double rating;
     private String dateOfBirth;
+    private String profileImage;
 
     public Passenger(int id, String name, String surname, String login, String password, double rating,String dateOfBirth) {
         this.id = id;
@@ -35,6 +36,34 @@ public class Passenger {
         this.login = login;
         this.password = password;
         this.dateOfBirth=dateOfBirth;
+    }
+
+    public Passenger(int id, String name, String surname, String login, String password, double rating, String dateOfBirth, String profileImage) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.login = login;
+        this.password = password;
+        this.rating = rating;
+        this.dateOfBirth = dateOfBirth;
+        this.profileImage = profileImage;
+    }
+
+    public Passenger(String name, String surname, String login, String password, String dateOfBirth, String profileImage) {
+        this.name = name;
+        this.surname = surname;
+        this.login = login;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.profileImage = profileImage;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 
     public int getId() {

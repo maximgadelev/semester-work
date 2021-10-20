@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.kpfu.itis.gadelev.net.dao.TripDao;
 import ru.kpfu.itis.gadelev.net.helper.PostgresConnectionHelper;
-import ru.kpfu.itis.gadelev.net.model.Car;
 import ru.kpfu.itis.gadelev.net.model.Trip;
 
 import java.sql.Connection;
@@ -15,7 +14,7 @@ import java.util.List;
 
 
 public class TripDaoImpl implements TripDao<Trip> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PassengerUserDaoImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PassengerDaoImpl.class);
     private final Connection connection = PostgresConnectionHelper.getConnection();
     @Override
     public Trip get(int car_id) {

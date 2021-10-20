@@ -1,18 +1,23 @@
 package ru.kpfu.itis.gadelev.net.dto;
 
 public class PassengerDto {
+    private int id;
     private String name;
     private String surname;
     private String login;
     private double rating;
     private String date_of_birth;
+    private String profile_image;
 
-    public PassengerDto(String name, String surname, String login,double rating,String dateOfBirth) {
+
+    public PassengerDto(int id,String name, String surname, String login, double rating, String date_of_birth, String profile_image) {
+        this.id=id;
         this.name = name;
         this.surname = surname;
         this.login = login;
-        this.rating=rating;
-        this.date_of_birth =dateOfBirth;
+        this.rating = rating;
+        this.date_of_birth = date_of_birth;
+        this.profile_image = profile_image;
     }
 
     public String getName() {
@@ -41,6 +46,30 @@ public class PassengerDto {
 
     public String getLogin() {
         return login;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getProfile_image() {
+        return profile_image;
+    }
+
+    public void setProfile_image(String profile_image) {
+        this.profile_image = profile_image;
     }
 
     public void setLogin(String login) {

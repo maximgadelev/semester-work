@@ -7,7 +7,7 @@
 </#macro>
 <#macro loggedDriver>
     <a href="main.ftl">Главная</a>
-    <a href="/driver">Профиль</a>
+    <a href="/driver">Профиль водителя</a>
     <a href="/logout">Выйти</a>
     <br>
 </#macro>
@@ -19,7 +19,7 @@
 </#macro>
 <#macro loggedUser>
     <a href="main.ftl">Главная</a>
-    <a href="/passenger">Профиль</a>
+    <a href="/passenger">Профиль Пассажира</a>
     <a href="/logout">Выйти</a>
     <br>
 </#macro>

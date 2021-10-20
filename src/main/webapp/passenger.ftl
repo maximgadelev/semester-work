@@ -11,12 +11,20 @@
         <p>Логин: ${passenger.login}</p>
         <p>Ваш рейтинг: ${passenger.rating}</p>
         <p>Дата рождения:${passenger.dateOfBirth}</p>
+
+
+        <#if passenger.profileImage?has_content>
+            <p>Ваше фото</p>
+            <img src="${passenger.profileImage}" alt="Profile photo">
+        </#if>
+
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            Change profile photo:
+            <input type="file" name="file"> <input type="submit" value="upload">
+        </form>
+
+
     </#if>
 
-    <body>
-    <p><input type="file" name="photo" multiple accept="image/*,image/jpeg">
-        <img src="/static/img/family-carpool-vector-illustration.jpg" width="300" height="300">
-        <input type="submit" value="Отправить"></p>
-    </body>
 
 </@common.htmlTemplate>

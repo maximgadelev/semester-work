@@ -39,7 +39,10 @@ public class DriverServlet extends HttpServlet {
             req.setAttribute("driver", httpSession.getAttribute("driver"));
             req.getRequestDispatcher("driver.ftl").forward(req, resp);
 
-
-
 }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
+    }
 }

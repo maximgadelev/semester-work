@@ -11,5 +11,6 @@ public interface PassengerService<T> {
     List<PassengerDto> getAll();
 
     boolean save(Passenger passenger);
+    void changePhoto(int id,String url);
 }
 

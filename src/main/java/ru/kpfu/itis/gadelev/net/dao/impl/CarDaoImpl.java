@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class CarDaoImpl implements CarDao<Car> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PassengerUserDaoImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PassengerDaoImpl.class);
     private final Connection connection = PostgresConnectionHelper.getConnection();
     @Override
     public Car get(int driverId) {
