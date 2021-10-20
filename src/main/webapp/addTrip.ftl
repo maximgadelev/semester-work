@@ -1,18 +1,19 @@
+<#ftl encoding='UTF-8'>
 <#import "/templates/common.ftl" as common>
 <@common.htmlTemplate pageName="AddCar">
     <form action="/addTrip" method ="post">
-       Date:
+      Дата:
         <input name="date" type="text" maxlength="20" required/>
         <br>
-         Price:
+         Цена:
         <input name="price" type="number"  maxlength="6" required>
         <br>
-        Path:
+        Путь:
         <input name="path" type="text" required>
         <br>
-         Time:
+         Время:
         <input name="time" type="text" maxlength="30" required>
         <br>
-        <input type="submit" value="Add new trip">
+        <input type="submit" value="Добавить поездку">
     </form>
 </@common.htmlTemplate>

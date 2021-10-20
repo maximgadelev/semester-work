@@ -1,18 +1,20 @@
+<#ftl encoding='UTF-8'>
+
 <#import "/templates/common.ftl" as common>
 <@common.htmlTemplate pageName="AddCar">
     <form action="/addCar" method ="post">
-            Brand:
+            Марка:
             <input name="brand" type="text" maxlength="20" required/>
             <br>
-            Number:
+            Номер Машины:
             <input name="number" type="text" minlength="6" maxlength="6" required>
             <br>
-            Number of Places:
+            Количество мест:
             <input name="numberOfPlaces" type="number" minlength="1" maxlength="10" required>
             <br>
-            Model:
+            Модель:
             <input name="model" type="text" maxlength="30" required>
             <br>
-            <input type="submit" value="Add new car">
+            <input type="submit" value="Добавить машину">
         </form>
     </@common.htmlTemplate>

@@ -1,3 +1,4 @@
+<#ftl encoding='UTF-8'>
 <#macro htmlTemplate pageName>
     <!DOCTYPE html>
     <head>

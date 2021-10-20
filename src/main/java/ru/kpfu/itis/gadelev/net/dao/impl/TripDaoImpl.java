@@ -27,7 +27,7 @@ public class TripDaoImpl implements TripDao<Trip> {
                 return new Trip(
                         resultSet.getInt("trip_id"),
                         resultSet.getInt("admin_id"),
-                        resultSet.getInt(car_id),
+                        resultSet.getInt("car_id"),
                         resultSet.getString("date"),
                         resultSet.getInt("price"),
                         resultSet.getString("path"),

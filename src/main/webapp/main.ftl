@@ -7,5 +7,5 @@
     <#if driver?has_content>
         <@navigation.loggedDriver/>
     </#if>
-    You are login on site!It is main page
+    Главная страница!
 </@common.htmlTemplate>

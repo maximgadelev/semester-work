@@ -27,13 +27,19 @@ public class DriverServlet extends HttpServlet {
                 driver_id = Integer.parseInt(cookie.getValue());
             }
         }
+
+
+        HttpSession httpSession = req.getSession();
             Car driverCar = carDao.get(driver_id);
             req.setAttribute("car", driverCar);
-            HttpSession httpSession = req.getSession();
-            req.setAttribute("trip",tripDao.get(driverCar.getId()));
+            if(driverCar!=null) {
+                Trip trip = tripDao.get(driverCar.getId());
+                req.setAttribute("trip",trip);
+            }
             req.setAttribute("driver", httpSession.getAttribute("driver"));
             req.getRequestDispatcher("driver.ftl").forward(req, resp);
 
 
-        }
+
+}
 }

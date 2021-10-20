@@ -23,7 +23,7 @@ public class CarDaoImpl implements CarDao<Car> {
             ResultSet resultSet =preparedStatement.executeQuery();
             if(resultSet.next()){
                 return new Car(resultSet.getInt("car_id"),
-                        resultSet.getInt(driverId),
+                        resultSet.getInt("driver_id"),
                         resultSet.getString("brand"),
                         resultSet.getString("number"),
                         resultSet.getInt("number_of_places"),
