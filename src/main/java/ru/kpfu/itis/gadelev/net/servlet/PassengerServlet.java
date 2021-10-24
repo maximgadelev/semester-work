@@ -18,8 +18,6 @@ import java.util.Map;
 
 @WebServlet(urlPatterns = "/passenger")
 public class PassengerServlet extends HttpServlet {
-    private final Cloudinary cloudinary = CloudinaryHelper.getInstance();
-    private final PassengerService passengerService = new PassengerServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

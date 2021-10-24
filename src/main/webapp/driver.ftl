@@ -12,7 +12,35 @@
         <p>Рейтинг: ${driver.rating}</p>
         <p>Дата рождения:${driver.dateOfBirth}</p>
         <br>
+
+        <#if driver.profileImage?has_content>
+            <p>Ваше фото</p>
+            <img src="${driver.profileImage}" alt="Profile photo">
+        </#if>
+
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            Change profile photo:
+            <input type="file" name="file"> <input type="submit" value="upload">
+        </form>
+
+
+
+
+
+
+
+
+
+
     </#if>
+
+
+
+
+
+
+
+
 
     <#if car?has_content>
         <H3>Информация о вашей машине</H3>
@@ -20,13 +48,13 @@
         <p>Марка:${car.brand}</p>
         <p>Модель:${car.model}</p>
 
-<#else>
+    <#else>
         <p>У вас пока нет машины</p>
-    <br>
-    <form action="/addCar">
-        <button type="submit">Добавить машину</button>
         <br>
-    </form>
+        <form action="/addCar">
+            <button type="submit">Добавить машину</button>
+            <br>
+        </form>
     </#if>
     <#if trip?has_content>
         <H3>Ваша ближайшая поездка</H3>

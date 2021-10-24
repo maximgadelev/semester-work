@@ -19,10 +19,6 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 private final PassengerDao<Passenger> passengerPassengerDao = new PassengerDaoImpl();
 private final PassengerDao<Driver> driverPassengerDao = new DriverDaoImpl();
-    private static final Logger logger = LoggerFactory.getLogger(LoginServlet.class);
-
-
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("login.ftl").forward(req,resp);

@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import ru.kpfu.itis.gadelev.net.dao.PassengerDao;
 import ru.kpfu.itis.gadelev.net.helper.PostgresConnectionHelper;
 import ru.kpfu.itis.gadelev.net.model.Driver;
+import ru.kpfu.itis.gadelev.net.model.Passenger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +30,8 @@ public class DriverDaoImpl implements PassengerDao<Driver> {
                         resultSet.getString("login"),
                         resultSet.getString("password"),
                         resultSet.getDouble("rating"),
-                        resultSet.getString("date_of_birth")
+                        resultSet.getString("date_of_birth"),
+                        resultSet.getString("profile_image")
                 );
                 return driver;
             }
@@ -66,11 +68,41 @@ public class DriverDaoImpl implements PassengerDao<Driver> {
 
     @Override
     public Driver getById(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM drivers where driver_id = ?");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Driver driver = new Driver(
+                        resultSet.getInt("driver_id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("surname"),
+                        resultSet.getString("login"),
+                        resultSet.getString("password"),
+                        resultSet.getDouble("rating"),
+                        resultSet.getString("date_of_birth"),
+                        resultSet.getString("profile_image")
+                );
+                return driver;
+            }
+            return null;
+        } catch (SQLException e) {
+            LOGGER.warn("Failed get passenger", e);
+        }
         return null;
     }
 
     @Override
     public void changePhoto(int id, String url) {
+        String sql = "UPDATE drivers SET profile_image = ? WHERE driver_id = ?";
 
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, url);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            LOGGER.warn("Failed to update user.", throwables);
+        }
     }
 }

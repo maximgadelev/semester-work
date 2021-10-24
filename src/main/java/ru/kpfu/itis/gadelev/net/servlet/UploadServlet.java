@@ -5,6 +5,7 @@ import com.cloudinary.utils.ObjectUtils;
 import ru.kpfu.itis.gadelev.net.dto.PassengerDto;
 import ru.kpfu.itis.gadelev.net.helper.CloudinaryHelper;
 import ru.kpfu.itis.gadelev.net.helper.ImageHelper;
+import ru.kpfu.itis.gadelev.net.model.Driver;
 import ru.kpfu.itis.gadelev.net.model.Passenger;
 import ru.kpfu.itis.gadelev.net.service.PassengerService;
 import ru.kpfu.itis.gadelev.net.service.impl.PassengerServiceImpl;
@@ -35,16 +36,28 @@ public class UploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         File file = getFile(request);
         HttpSession httpSession = request.getSession();
-       Passenger passenger = (Passenger)httpSession.getAttribute("passenger");
+        if(httpSession.getAttribute("passenger")!=null){
+            Passenger passenger = (Passenger)httpSession.getAttribute("passenger");
 
-        String filename = "profilePhoto" + passenger.getId();
+            String filename = "passengerPhoto" + passenger.getId();
 
-        Map upload =  cloudinary.uploader().upload(file,
-                ObjectUtils.asMap("public_id", filename));
-        String url = (String) upload.get("url");
-        passenger.setProfileImage(url);
-        service.changePhoto(passenger.getId(),url);
-        response.sendRedirect("/passenger");
+            Map upload =  cloudinary.uploader().upload(file,
+                    ObjectUtils.asMap("public_id", filename));
+            String url = (String) upload.get("url");
+            passenger.setProfileImage(url);
+            service.changePhoto(passenger.getId(),url);
+            response.sendRedirect("/passenger");
+        }else if(httpSession.getAttribute("driver")!=null){
+            Driver driver = (Driver) httpSession.getAttribute("driver");
+            String filename = "DriverPhoto" + driver.getId();
+            Map upload =  cloudinary.uploader().upload(file,
+                    ObjectUtils.asMap("public_id", filename));
+            String url = (String) upload.get("url");
+            driver.setProfileImage(url);
+            service.changePhoto(driver.getId(),url);
+            response.sendRedirect("/driver");
+        }
+
 
     }
 

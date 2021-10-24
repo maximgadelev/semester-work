@@ -15,7 +15,7 @@ public class LogoutServlet extends HttpServlet {
         req.getSession().removeAttribute("driver");
         Cookie[] cookies = req.getCookies();
         for (Cookie cookie : cookies){
-            if (cookie.getName().equals("id")){
+            if (cookie.getName().equals("passenger_id") || cookie.getName().equals("driver_id")){
                 cookie.setMaxAge(0);
                 resp.addCookie(cookie);
             }
