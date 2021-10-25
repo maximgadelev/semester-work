@@ -10,6 +10,7 @@ import ru.kpfu.itis.gadelev.net.model.Trip;
 import ru.kpfu.itis.gadelev.net.service.TripService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TripServiceImpl implements TripService {
     private final TripDao<Trip> tripDao = new TripDaoImpl();
@@ -31,7 +32,25 @@ public class TripServiceImpl implements TripService {
                 trip.getDate(),
                 trip.getPrice(),
                 trip.getPath(),
-                trip.getTime()
+                trip.getTime(),
+                trip.getNotFreePlaces(),
+                trip.getFreePlaces()
         ));
+    }
+
+    @Override
+    public List<TripDto> getBySearch(String date, String time, String path) {
+       List<Trip> trips =tripDao.getBySearch(date,time,path);
+        return trips.stream().map(trip->new TripDto(
+                trip.getId(),
+                trip.getAdmin_id(),
+                trip.getCar_id(),
+                trip.getDate(),
+                trip.getPrice(),
+                trip.getPath(),
+                trip.getTime(),
+                trip.getNotFreePlaces(),
+                trip.getFreePlaces())
+        ).collect(Collectors.toList());
     }
 }

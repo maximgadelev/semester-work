@@ -13,6 +13,8 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().removeAttribute("passenger");
         req.getSession().removeAttribute("driver");
+        req.getSession().removeAttribute("driverCar");
+        req.getSession().removeAttribute("trip");
         Cookie[] cookies = req.getCookies();
         for (Cookie cookie : cookies){
             if (cookie.getName().equals("passenger_id") || cookie.getName().equals("driver_id")){

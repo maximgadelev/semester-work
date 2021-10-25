@@ -6,12 +6,9 @@
     </#macro>
     <#macro loggedDriver>
         <a href="main.ftl">Главная</a>
-        <a href="/driver">Профиль водителя</a>
+        <a href="/driver">Профиль</a>
         <a href="/logout">Выйти</a>
     </#macro>
-
-
-
     <#macro unloggedUser>
         <nav>
             <ul>
@@ -19,14 +16,17 @@
                 <li><a href="registration.ftl">Регистрация</a></li>
             </ul>
         </nav>
+
     </#macro>
     <#macro loggedUser>
-        <a href="main.ftl">Главная</a>
-        <a href="/passenger">Профиль Пассажира</a>
-        <a href="/logout">Выйти</a>
-        <br>
+        <nav>
+            <ul>
+    <li><a href="main.ftl">Главная</a></li>
+      <li><a href="/passenger">Профиль Пассажира</a></li>
+                <li> <a href="/logout">Выйти</a></li>
+            </ul>
+        </nav>
     </#macro>
-
 <style>
     nav{
         width: 960px;
@@ -36,7 +36,7 @@
         display: block;
         height: 50px;
         width: 100%;
-        background-color: rgb(81,186,215);
+        background: rgb(81,186,215);
         position: absolute;
         left: 0;
         z-index: -1;
@@ -60,6 +60,6 @@
         line-height: 50px;
     }
     ul li a:hover{
-        background: #ffdb06;
+        background:  #ffdb06;
     }
-
+</style>

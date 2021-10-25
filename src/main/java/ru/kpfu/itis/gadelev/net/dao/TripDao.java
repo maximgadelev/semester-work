@@ -8,4 +8,5 @@ public interface TripDao<T> {
     List<T> getAll();
 
     boolean save(T t);
+    List<T> getBySearch(String date,String time,String path);
 }

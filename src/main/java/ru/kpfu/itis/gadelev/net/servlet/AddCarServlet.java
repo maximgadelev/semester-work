@@ -21,7 +21,7 @@ public class AddCarServlet extends HttpServlet {
         Cookie[] cookies = req.getCookies();
         int driver_id=0;
         for (Cookie cookie : cookies) {
-            if(cookie.getName().equals("id")){
+            if(cookie.getName().equals("driver_id")){
                  driver_id=Integer.parseInt(cookie.getValue());
             }
         }

@@ -22,6 +22,7 @@ public class DriverServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();
         int driver_id = 0;
+
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("driver_id")) {
                 driver_id = Integer.parseInt(cookie.getValue());
@@ -40,9 +41,4 @@ public class DriverServlet extends HttpServlet {
             req.getRequestDispatcher("driver.ftl").forward(req, resp);
 
 }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
-    }
 }

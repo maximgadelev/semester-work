@@ -13,4 +13,6 @@ public interface TripService {
     List<TripDto> getAll();
 
     boolean save(Trip trip);
+
+    List<TripDto> getBySearch(String path,String date,String time);
 }

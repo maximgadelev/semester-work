@@ -8,8 +8,10 @@ public class Trip {
     private int price;
     private String path;
     private String time;
+    private int freePlaces;
+    private int notFreePlaces;
 
-    public Trip(int id, int admin_id, int car_id, String date, int price, String path, String time) {
+    public Trip(int id, int admin_id, int car_id, String date, int price, String path, String time,int notFreePlaces,int freePlaces) {
         this.id = id;
         this.admin_id = admin_id;
         this.car_id = car_id;
@@ -17,30 +19,54 @@ public class Trip {
         this.price = price;
         this.path = path;
         this.time = time;
+        this.notFreePlaces=notFreePlaces;
+        this.freePlaces=freePlaces;
     }
 
-    public Trip(int admin_id, int car_id, String date, int price, String path, String time) {
+    public Trip(int admin_id, int car_id, String date, int price, String path, String time,int notFreePlaces,int freePlaces) {
         this.admin_id = admin_id;
         this.car_id = car_id;
         this.date = date;
         this.price = price;
         this.path = path;
         this.time = time;
+        this.notFreePlaces=notFreePlaces;
+        this.freePlaces=freePlaces;
     }
 
-    public Trip(String date, int price, String path, String time) {
+    public Trip(String date, int price, String path, String time,int notFreePlaces,int freePlaces) {
         this.date = date;
         this.price = price;
         this.path = path;
         this.time = time;
+        this.notFreePlaces=notFreePlaces;
+        this.freePlaces=freePlaces;
     }
 
-    public Trip(int car_id, String date, int price, String path, String time) {
+    public Trip(int car_id, String date, int price, String path, String time,int notFreePlaces,int freePlaces) {
         this.car_id = car_id;
         this.date = date;
         this.price = price;
         this.path = path;
         this.time = time;
+        this.notFreePlaces=notFreePlaces;
+        this.freePlaces=freePlaces;
+    }
+
+    public int getFreePlaces() {
+        return freePlaces;
+    }
+
+    public void setFreePlaces(int freePlaces) {
+        this.freePlaces = freePlaces;
+    }
+
+    public int getNotFreePlaces() {
+        return notFreePlaces;
+    }
+
+    public void setNotFreePlaces(int notFreePlaces) {
+        this.notFreePlaces = notFreePlaces;
     }
 
     public int getId() {

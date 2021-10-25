@@ -32,12 +32,13 @@ public class AddTripServlet  extends HttpServlet {
         Cookie[] cookies = req.getCookies();
         int driver_id=0;
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("id")) {
+            if (cookie.getName().equals("driver_id")) {
                 driver_id = Integer.parseInt(cookie.getValue());
             }
         }
         Car driverCar = carDao.get(driver_id);
-      if(  tripService.save(new Trip(1,driverCar.getId(),req.getParameter("date"),Integer.parseInt(req.getParameter("price")),req.getParameter("path"),req.getParameter("time")))){
+
+      if(tripService.save(new Trip(1,driverCar.getId(),req.getParameter("date"),Integer.parseInt(req.getParameter("price")),req.getParameter("path"),req.getParameter("time"),0,driverCar.getNumberOfPlaces()))){
           resp.sendRedirect("/driver");
       }
     }
