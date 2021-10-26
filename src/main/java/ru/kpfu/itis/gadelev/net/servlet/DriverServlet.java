@@ -28,8 +28,6 @@ public class DriverServlet extends HttpServlet {
                 driver_id = Integer.parseInt(cookie.getValue());
             }
         }
-
-
         HttpSession httpSession = req.getSession();
             Car driverCar = carDao.get(driver_id);
             req.setAttribute("car", driverCar);

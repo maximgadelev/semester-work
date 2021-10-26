@@ -33,14 +33,57 @@ public class TripDaoImpl implements TripDao<Trip> {
                         resultSet.getString("path"),
                         resultSet.getString("time"),
                         resultSet.getInt("not_free_places"),
-                        resultSet.getInt("free_places")
+                        resultSet.getInt("free_places"),
+                        resultSet.getString("status")
                 );
             }
             return null;
         }catch (SQLException e){
-            LOGGER.warn("Failed get passenger",e);
+            LOGGER.warn("Failed get trip",e);
         }
         return null;
+    }
+
+    @Override
+    public Trip getById(int trip_id) {
+        try{
+            PreparedStatement preparedStatement =connection.prepareStatement("SELECT * FROM trips where trip_id= ?");
+            preparedStatement.setInt(1,trip_id);
+            ResultSet resultSet =preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return new Trip(
+                        resultSet.getInt("trip_id"),
+                        resultSet.getInt("admin_id"),
+                        resultSet.getInt("car_id"),
+                        resultSet.getString("date"),
+                        resultSet.getInt("price"),
+                        resultSet.getString("path"),
+                        resultSet.getString("time"),
+                        resultSet.getInt("not_free_places"),
+                        resultSet.getInt("free_places"),
+                        resultSet.getString("status")
+                );
+            }
+            return null;
+        }catch (SQLException e){
+            LOGGER.warn("Failed get trip",e);
+        }
+        return null;
+    }
+
+    @Override
+    public void changeFreePlaces(int trip_id,int places) {
+        String sql = "UPDATE trips SET free_places = ?,not_free_places = ?  WHERE trip_id = ?";
+Trip trip = getById(trip_id);
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, trip.getFreePlaces()-places);
+            preparedStatement.setInt(2, trip.getNotFreePlaces()+places);
+            preparedStatement.setInt(3,trip.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            LOGGER.warn("Failed to update trip.", throwables);
+        }
     }
 
     @Override
@@ -50,7 +93,7 @@ public class TripDaoImpl implements TripDao<Trip> {
 
     @Override
     public boolean save(Trip trip) {
-        String sql = "INSERT INTO trips (admin_id,car_id,price,path,date,time,not_free_places,free_places) VALUES (?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO trips (admin_id,car_id,price,path,date,time,not_free_places,free_places,status) VALUES (?,?,?,?,?,?,?,?,?);";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -62,6 +105,7 @@ public class TripDaoImpl implements TripDao<Trip> {
             preparedStatement.setString(6,trip.getTime());
             preparedStatement.setInt(7,trip.getNotFreePlaces());
             preparedStatement.setInt(8,trip.getFreePlaces());
+            preparedStatement.setString(9,trip.getStatus());
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException throwables) {
@@ -71,12 +115,13 @@ public class TripDaoImpl implements TripDao<Trip> {
     }
 
     @Override
-    public List<Trip> getBySearch(String date, String time, String path) {
+    public List<Trip> getBySearch(String date, String time, String path,int freePlaces) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM trips where date = ? and time = ? and path =? ");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM trips where date = ? and time = ? and path =? and ?<=free_places and status='Активна' ");
             preparedStatement.setString(1,date);
             preparedStatement.setString(2,time);
             preparedStatement.setString(3,path);
+            preparedStatement.setInt(4,freePlaces);
             List<Trip> trips = new ArrayList<>();
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -89,7 +134,8 @@ public class TripDaoImpl implements TripDao<Trip> {
                         resultSet.getString("path"),
                         resultSet.getString("time"),
                         resultSet.getInt("not_free_places"),
-                        resultSet.getInt("free_places")
+                        resultSet.getInt("free_places"),
+                        resultSet.getString("status")
                 );
                 trips.add(trip);
             }

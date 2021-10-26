@@ -10,6 +10,7 @@ public class TripDto {
     private String time;
     private int freePlaces;
     private int notFreePlaces;
+    private String status;
 
     public TripDto(String date, int price, String path, String time) {
         this.date = date;
@@ -18,7 +19,7 @@ public class TripDto {
         this.time = time;
     }
 
-    public TripDto(int id, int admin_id, int car_id, String date, int price, String path, String time,int notFreePlaces,int freePlaces) {
+    public TripDto(int id, int admin_id, int car_id, String date, int price, String path, String time,int notFreePlaces,int freePlaces,String status) {
         this.id = id;
         this.admin_id = admin_id;
         this.car_id = car_id;
@@ -28,6 +29,7 @@ public class TripDto {
         this.time = time;
         this.freePlaces=freePlaces;
         this.notFreePlaces=notFreePlaces;
+        this.status=status;
     }
 
     public int getId() {
@@ -84,6 +86,14 @@ public class TripDto {
 
     public int getFreePlaces() {
         return freePlaces;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setFreePlaces(int freePlaces) {

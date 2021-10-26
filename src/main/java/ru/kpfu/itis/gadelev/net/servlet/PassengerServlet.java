@@ -17,7 +17,8 @@ import java.io.IOException;
 import java.util.Map;
 
 @WebServlet(urlPatterns = "/passenger")
-public class PassengerServlet extends HttpServlet {
+public class
+PassengerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

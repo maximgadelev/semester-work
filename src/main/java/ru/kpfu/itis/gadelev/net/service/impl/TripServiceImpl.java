@@ -34,13 +34,20 @@ public class TripServiceImpl implements TripService {
                 trip.getPath(),
                 trip.getTime(),
                 trip.getNotFreePlaces(),
-                trip.getFreePlaces()
+                trip.getFreePlaces(),
+                trip.getStatus()
         ));
     }
 
     @Override
-    public List<TripDto> getBySearch(String date, String time, String path) {
-       List<Trip> trips =tripDao.getBySearch(date,time,path);
+    public TripDto getById(int trip_id) {
+        Trip trip = tripDao.getById(trip_id);
+        return new TripDto(trip.getId(),trip.getAdmin_id(),trip.getCar_id(),trip.getDate(),trip.getPrice(),trip.getPath(),trip.getTime(),trip.getNotFreePlaces(),trip.getFreePlaces(),trip.getStatus());
+    }
+
+    @Override
+    public List<TripDto> getBySearch(String date, String time, String path,int freePlaces) {
+       List<Trip> trips =tripDao.getBySearch(date,time,path,freePlaces);
         return trips.stream().map(trip->new TripDto(
                 trip.getId(),
                 trip.getAdmin_id(),
@@ -50,7 +57,13 @@ public class TripServiceImpl implements TripService {
                 trip.getPath(),
                 trip.getTime(),
                 trip.getNotFreePlaces(),
-                trip.getFreePlaces())
+                trip.getFreePlaces(),
+                trip.getStatus())
         ).collect(Collectors.toList());
+    }
+
+    @Override
+    public void changeFreePlaces(int trip_id, int places) {
+        tripDao.changeFreePlaces(trip_id,places);
     }
 }

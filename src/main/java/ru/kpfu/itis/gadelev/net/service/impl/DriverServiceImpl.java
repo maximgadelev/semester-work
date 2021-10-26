@@ -32,4 +32,8 @@ public class DriverServiceImpl implements DriverService {
                 driver.getDateOfBirth()
         ));
     }
+@Override
+    public void changePhoto(int id, String url) {
+        passengerDao.changePhoto(id,url);
+    }
 }

@@ -10,6 +10,6 @@ public interface DriverService<T> {
     DriverDto get(int id);
 
     List<DriverDto> getAll();
-
+    void changePhoto(int id,String url);
     boolean save(Driver driver);
 }

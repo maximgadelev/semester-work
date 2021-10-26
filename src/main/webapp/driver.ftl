@@ -48,6 +48,9 @@
         <p>Марка:${car.brand}</p>
         <p>Модель:${car.model}</p>
 
+        <form action="/addTrip">
+        <button type="submit">Добавить новую поездку</button>
+        <br>
     <#else>
         <p>У вас пока нет машины</p>
         <br>
@@ -60,11 +63,6 @@
         <H3>Ваша ближайшая поездка</H3>
         <p>Дата:${trip.date}<p>
         <p>Время:${trip.time}</p>
-    <#else>
-        <form action="/addTrip">
-            <button type="submit">Добавить новую поездку</button>
-            <br>
-        </form>
     </#if>
 
 

@@ -27,7 +27,8 @@ public class MainServlet extends HttpServlet {
         String from = req.getParameter("first");
         String to = req.getParameter("second");
         String path = from + "-" + to;
-        List<TripDto> trips=tripService.getBySearch(req.getParameter("date"),req.getParameter("time"),path);
+        resp.addCookie(new Cookie("places",req.getParameter("places")));
+        List<TripDto> trips=tripService.getBySearch(req.getParameter("date"),req.getParameter("time"),path,Integer.parseInt(req.getParameter("places")));
         if(trips.isEmpty()){
             resp.sendRedirect("/main");
         }else{

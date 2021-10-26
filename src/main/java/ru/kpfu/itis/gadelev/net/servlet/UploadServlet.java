@@ -7,7 +7,9 @@ import ru.kpfu.itis.gadelev.net.helper.CloudinaryHelper;
 import ru.kpfu.itis.gadelev.net.helper.ImageHelper;
 import ru.kpfu.itis.gadelev.net.model.Driver;
 import ru.kpfu.itis.gadelev.net.model.Passenger;
+import ru.kpfu.itis.gadelev.net.service.DriverService;
 import ru.kpfu.itis.gadelev.net.service.PassengerService;
+import ru.kpfu.itis.gadelev.net.service.impl.DriverServiceImpl;
 import ru.kpfu.itis.gadelev.net.service.impl.PassengerServiceImpl;
 
 import javax.servlet.ServletException;
@@ -31,6 +33,7 @@ public class UploadServlet extends HttpServlet {
     private final Cloudinary cloudinary = CloudinaryHelper.getInstance();
 
     private final PassengerService service = new PassengerServiceImpl();
+    private final DriverService driverService = new DriverServiceImpl();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,6 +50,7 @@ public class UploadServlet extends HttpServlet {
             passenger.setProfileImage(url);
             service.changePhoto(passenger.getId(),url);
             response.sendRedirect("/passenger");
+
         }else if(httpSession.getAttribute("driver")!=null){
             Driver driver = (Driver) httpSession.getAttribute("driver");
             String filename = "DriverPhoto" + driver.getId();
@@ -54,7 +58,7 @@ public class UploadServlet extends HttpServlet {
                     ObjectUtils.asMap("public_id", filename));
             String url = (String) upload.get("url");
             driver.setProfileImage(url);
-            service.changePhoto(driver.getId(),url);
+            driverService.changePhoto(driver.getId(),url);
             response.sendRedirect("/driver");
         }
 

@@ -18,6 +18,7 @@
         <input name="second" type="text" placeholder="Куда">
         <input name ="date" type="text" placeholder="Дата">
         <input  name = "time" type="text" placeholder="Время">
+        <input name ="places" type="number" placeholder="Количество мест">
     </form>
     Главная страница!
 </@common.htmlTemplate>

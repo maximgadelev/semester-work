@@ -14,5 +14,9 @@ public interface TripService {
 
     boolean save(Trip trip);
 
-    List<TripDto> getBySearch(String path,String date,String time);
+  TripDto getById(int trip_id);
+
+    List<TripDto> getBySearch(String path,String date,String time,int freePlaces);
+    
+    void changeFreePlaces(int trip_id,int places);
 }

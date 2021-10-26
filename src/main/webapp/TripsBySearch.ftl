@@ -9,9 +9,15 @@
 <#list trips as t>
     Дата:${t.date}
     Время:${t.time}
-    Цена:${t.price}
+    Цена:${(t.price)*places}
+    Желамое количество мест:${places}
     Свободных мест:${t.freePlaces}
 
+    <form action="/tripsBySearch" method="post">
+     <input type="hidden" name="tripId"
+     value='${t.id}'>
+        <input type="submit" value="Бронировать">
+    </form>
 </#list>!
         </#if>
 </#if>

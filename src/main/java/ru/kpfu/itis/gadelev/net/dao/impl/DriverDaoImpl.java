@@ -87,7 +87,7 @@ public class DriverDaoImpl implements PassengerDao<Driver> {
             }
             return null;
         } catch (SQLException e) {
-            LOGGER.warn("Failed get passenger", e);
+            LOGGER.warn("Failed get driver", e);
         }
         return null;
     }
@@ -102,7 +102,7 @@ public class DriverDaoImpl implements PassengerDao<Driver> {
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
-            LOGGER.warn("Failed to update user.", throwables);
+            LOGGER.warn("Failed to update driver.", throwables);
         }
     }
 }
