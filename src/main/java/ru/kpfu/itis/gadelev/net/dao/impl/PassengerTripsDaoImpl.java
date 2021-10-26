@@ -9,7 +9,9 @@ import ru.kpfu.itis.gadelev.net.model.Trip;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PassengerTripsDaoImpl implements PassengerTripsDao {
@@ -21,8 +23,33 @@ public class PassengerTripsDaoImpl implements PassengerTripsDao {
     }
 
     @Override
-    public List getPassengerTrips(int passenger_id) {
-        return null;
+    public List<Trip> getPassengerTripsByStatus(int passenger_id,String status) {
+        String sql = "select *from (select *from  passengers_trip inner join trips t on passengers_trip.trip_id = t.trip_id where passenger_id = ? order by status) as trips where status = ?;";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+preparedStatement.setInt(1,passenger_id);
+preparedStatement.setString(2,status);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Trip> trips= new ArrayList<>();
+            while (resultSet.next()) {
+                Trip trip = new Trip(
+                        resultSet.getInt("admin_id"),
+                        resultSet.getInt("car_id"),
+                        resultSet.getString("date"),
+                        resultSet.getInt("price"),
+                        resultSet.getString("path"),
+                        resultSet.getString("time"),
+                        resultSet.getInt("not_free_places"),
+                        resultSet.getInt("free_places"),
+                        resultSet.getString("status")
+                );
+                trips.add(trip);
+            }
+            return trips;
+        }catch (SQLException throwables){
+            LOGGER.warn("Failed to select trips");
+            return new ArrayList<>();
+        }
     }
 
     @Override

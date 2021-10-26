@@ -24,6 +24,7 @@
     <li><a href="main.ftl">Главная</a></li>
       <li><a href="/passenger">Профиль Пассажира</a></li>
                 <li> <a href="/logout">Выйти</a></li>
+                <li><a href ="/activePassengerTrips">Ваши поездки</a></li>
             </ul>
         </nav>
     </#macro>

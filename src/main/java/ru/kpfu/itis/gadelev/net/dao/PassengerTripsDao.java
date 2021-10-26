@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface PassengerTripsDao<T> {
     List<T> getPassengerByTrip(int trip_id);
-    List<T> getPassengerTrips(int passenger_id);
+    List<T> getPassengerTripsByStatus(int passenger_id,String status);
     boolean savePassengerTrip(int passenger_id, int trip_id);
 }

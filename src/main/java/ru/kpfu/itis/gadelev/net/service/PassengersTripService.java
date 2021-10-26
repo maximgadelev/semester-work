@@ -10,6 +10,6 @@ import java.util.List;
 public interface PassengersTripService {
 
     List<PassengerDto> getPassengerByTrip(int trip_id);
-    List<TripDto> getPassengerTrips(int passenger_id);
+    List<TripDto> getPassengerTripsByStatus(int passenger_id,String status);
     boolean savePassengerTrip(int passenger_id, int trip_id);
 }

@@ -9,6 +9,7 @@ import ru.kpfu.itis.gadelev.net.model.Trip;
 import ru.kpfu.itis.gadelev.net.service.PassengersTripService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PassengersTripServiceImpl implements PassengersTripService {
     private final PassengerTripsDao passengerTripsDao = new PassengerTripsDaoImpl();
@@ -18,8 +19,20 @@ public class PassengersTripServiceImpl implements PassengersTripService {
     }
 
     @Override
-    public List<TripDto> getPassengerTrips(int passenger_id) {
-        return null;
+    public List<TripDto> getPassengerTripsByStatus(int passenger_id,String status) {
+       List<Trip> trips = passengerTripsDao.getPassengerTripsByStatus(passenger_id,status);
+       return trips.stream().map(trip -> new TripDto(
+               trip.getId(),
+               trip.getAdmin_id(),
+               trip.getCar_id(),
+               trip.getDate(),
+               trip.getPrice(),
+               trip.getPath(),
+               trip.getTime(),
+               trip.getNotFreePlaces(),
+               trip.getFreePlaces(),
+               trip.getStatus()
+       )).collect(Collectors.toList());
     }
 
     @Override
