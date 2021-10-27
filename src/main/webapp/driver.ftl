@@ -22,35 +22,17 @@
             Change profile photo:
             <input type="file" name="file"> <input type="submit" value="upload">
         </form>
-
-
-
-
-
-
-
-
-
-
     </#if>
-
-
-
-
-
-
-
-
 
     <#if car?has_content>
         <H3>Информация о вашей машине</H3>
         <p>Номер:${car.number}</p>
         <p>Марка:${car.brand}</p>
         <p>Модель:${car.model}</p>
-
-        <form action="/addTrip">
+        <form action="/addTrip" method="post">
         <button type="submit">Добавить новую поездку</button>
         <br>
+
     <#else>
         <p>У вас пока нет машины</p>
         <br>

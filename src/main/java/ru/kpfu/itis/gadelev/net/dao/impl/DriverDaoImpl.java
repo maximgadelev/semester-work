@@ -3,6 +3,7 @@ package ru.kpfu.itis.gadelev.net.dao.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.kpfu.itis.gadelev.net.dao.DriverDao;
 import ru.kpfu.itis.gadelev.net.dao.PassengerDao;
 import ru.kpfu.itis.gadelev.net.helper.PostgresConnectionHelper;
 import ru.kpfu.itis.gadelev.net.model.Driver;
@@ -14,7 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class DriverDaoImpl implements PassengerDao<Driver> {
+public class DriverDaoImpl implements DriverDao<Driver> {
     private static final Logger LOGGER = LoggerFactory.getLogger(PassengerDaoImpl.class);
     private final Connection connection = PostgresConnectionHelper.getConnection();
     @Override

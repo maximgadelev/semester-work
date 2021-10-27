@@ -1,11 +1,8 @@
 package ru.kpfu.itis.gadelev.net.service.impl;
 
-import ru.kpfu.itis.gadelev.net.dao.CarDao;
 import ru.kpfu.itis.gadelev.net.dao.TripDao;
-import ru.kpfu.itis.gadelev.net.dao.impl.CarDaoImpl;
 import ru.kpfu.itis.gadelev.net.dao.impl.TripDaoImpl;
 import ru.kpfu.itis.gadelev.net.dto.TripDto;
-import ru.kpfu.itis.gadelev.net.model.Car;
 import ru.kpfu.itis.gadelev.net.model.Trip;
 import ru.kpfu.itis.gadelev.net.service.TripService;
 
@@ -37,6 +34,23 @@ public class TripServiceImpl implements TripService {
                 trip.getFreePlaces(),
                 trip.getStatus()
         ));
+    }
+
+    @Override
+    public List<TripDto> getByDriverId(int driver_id) {
+        List<Trip> trips = tripDao.getTripsByDriverId(driver_id);
+        return trips.stream().map(trip -> new TripDto(
+                trip.getId(),
+                trip.getAdmin_id(),
+                trip.getCar_id(),
+                trip.getDate(),
+                trip.getPrice(),
+                trip.getPath(),
+                trip.getTime(),
+                trip.getNotFreePlaces(),
+                trip.getFreePlaces(),
+                trip.getStatus()
+        )).collect(Collectors.toList());
     }
 
     @Override

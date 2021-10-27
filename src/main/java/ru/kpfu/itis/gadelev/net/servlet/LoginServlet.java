@@ -1,8 +1,7 @@
 package ru.kpfu.itis.gadelev.net.servlet;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import ru.kpfu.itis.gadelev.net.dao.DriverDao;
 import ru.kpfu.itis.gadelev.net.dao.PassengerDao;
 import ru.kpfu.itis.gadelev.net.dao.impl.DriverDaoImpl;
 import ru.kpfu.itis.gadelev.net.dao.impl.PassengerDaoImpl;
@@ -18,7 +17,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 private final PassengerDao<Passenger> passengerPassengerDao = new PassengerDaoImpl();
-private final PassengerDao<Driver> driverPassengerDao = new DriverDaoImpl();
+private final DriverDao<Driver> driverDao = new DriverDaoImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("login.ftl").forward(req,resp);
@@ -38,7 +37,7 @@ private final PassengerDao<Driver> driverPassengerDao = new DriverDaoImpl();
                     resp.sendRedirect("/login");
                 }
             }else{
-            Driver driver = driverPassengerDao.getByLogin(login);
+            Driver driver = driverDao.getByLogin(login);
             if(driver!=null) {
                 if (password.equals(driver.getPassword())) {
                     req.getSession().setAttribute("driver", driver);
@@ -51,15 +50,5 @@ private final PassengerDao<Driver> driverPassengerDao = new DriverDaoImpl();
                 resp.sendRedirect("/login");
             }
         }
-
-
-
-
-
-
-
-
-
-
     }
 }

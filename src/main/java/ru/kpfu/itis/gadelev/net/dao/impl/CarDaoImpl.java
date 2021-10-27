@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import ru.kpfu.itis.gadelev.net.dao.CarDao;
 import ru.kpfu.itis.gadelev.net.helper.PostgresConnectionHelper;
 import ru.kpfu.itis.gadelev.net.model.Car;
+import ru.kpfu.itis.gadelev.net.model.Driver;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -60,5 +61,6 @@ public class CarDaoImpl implements CarDao<Car> {
             return false;
         }
     }
+
 }
 

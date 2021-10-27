@@ -1,5 +1,6 @@
 package ru.kpfu.itis.gadelev.net.service.impl;
 
+import ru.kpfu.itis.gadelev.net.dao.DriverDao;
 import ru.kpfu.itis.gadelev.net.dao.PassengerDao;
 import ru.kpfu.itis.gadelev.net.dao.impl.DriverDaoImpl;
 import ru.kpfu.itis.gadelev.net.dto.DriverDto;
@@ -10,7 +11,7 @@ import ru.kpfu.itis.gadelev.net.service.DriverService;
 import java.util.List;
 
 public class DriverServiceImpl implements DriverService {
-    private final PassengerDao<Driver> passengerDao = new DriverDaoImpl();
+    private final DriverDao<Driver> driverDao = new DriverDaoImpl();
 
     @Override
     public DriverDto get(int id) {
@@ -24,7 +25,7 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public boolean save(Driver driver) {
-        return passengerDao.save(new Driver(
+        return driverDao.save(new Driver(
                 driver.getName(),
                 driver.getSurname(),
                 driver.getLogin(),
@@ -34,6 +35,6 @@ public class DriverServiceImpl implements DriverService {
     }
 @Override
     public void changePhoto(int id, String url) {
-        passengerDao.changePhoto(id,url);
+        driverDao.changePhoto(id,url);
     }
 }

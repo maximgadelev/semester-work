@@ -8,6 +8,7 @@
         <a href="main.ftl">Главная</a>
         <a href="/driver">Профиль</a>
         <a href="/logout">Выйти</a>
+        <a href="/driverActiveTrips">Ваши текущие поездки</a>
     </#macro>
     <#macro unloggedUser>
         <nav>

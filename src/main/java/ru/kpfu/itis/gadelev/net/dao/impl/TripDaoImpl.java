@@ -18,13 +18,14 @@ public class TripDaoImpl implements TripDao<Trip> {
     private static final Logger LOGGER = LoggerFactory.getLogger(PassengerDaoImpl.class);
     private final Connection connection = PostgresConnectionHelper.getConnection();
     @Override
-    public Trip get(int car_id) {
+    public List<Trip> getTripsByDriverId(int driver_id) {
         try{
-            PreparedStatement preparedStatement =connection.prepareStatement("SELECT * FROM trips where car_id= ?");
-            preparedStatement.setInt(1,car_id);
+            PreparedStatement preparedStatement =connection.prepareStatement("select *from(select *from (select drivers.driver_id,car_id from drivers inner join cars c on drivers.driver_id = c.driver_id ) as driver_car inner join trips t on t.car_id=driver_car.car_id)as driver_trips where driver_id = ?");
+            preparedStatement.setInt(1,driver_id);
+            List<Trip> trips = new ArrayList<>();
             ResultSet resultSet =preparedStatement.executeQuery();
-            if(resultSet.next()){
-                return new Trip(
+            while (resultSet.next()){
+                Trip trip=new Trip(
                         resultSet.getInt("trip_id"),
                         resultSet.getInt("admin_id"),
                         resultSet.getInt("car_id"),
@@ -36,12 +37,13 @@ public class TripDaoImpl implements TripDao<Trip> {
                         resultSet.getInt("free_places"),
                         resultSet.getString("status")
                 );
+                trips.add(trip);
             }
-            return null;
+            return trips;
         }catch (SQLException e){
-            LOGGER.warn("Failed get trip",e);
+            LOGGER.warn("Failed get trips",e);
+            return new ArrayList<>();
         }
-        return null;
     }
 
     @Override
@@ -51,7 +53,7 @@ public class TripDaoImpl implements TripDao<Trip> {
             preparedStatement.setInt(1,trip_id);
             ResultSet resultSet =preparedStatement.executeQuery();
             if(resultSet.next()){
-                return new Trip(
+                 new Trip(
                         resultSet.getInt("trip_id"),
                         resultSet.getInt("admin_id"),
                         resultSet.getInt("car_id"),
