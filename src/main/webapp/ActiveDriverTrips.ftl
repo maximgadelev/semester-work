@@ -17,6 +17,10 @@
                     <input type="submit" value="Завершить данную поездку">
                 </form>
             </#list>
+
+<form action="/addTrip" method="get">
+    <button type="submit">Добавить новую поездку</button>
+    <br>
         </#if>
         <#else>
         У вас пока нет машины,чтобы совершать поездки:(

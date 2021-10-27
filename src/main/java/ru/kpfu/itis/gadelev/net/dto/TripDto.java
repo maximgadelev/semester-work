@@ -30,6 +30,7 @@ public class TripDto {
         this.status=status;
     }
 
+
     public int getId() {
         return id;
     }

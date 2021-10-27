@@ -53,7 +53,7 @@ public class TripDaoImpl implements TripDao<Trip> {
             preparedStatement.setInt(1,trip_id);
             ResultSet resultSet =preparedStatement.executeQuery();
             if(resultSet.next()){
-                 new Trip(
+                 return new Trip(
                         resultSet.getInt("trip_id"),
                         resultSet.getInt("car_id"),
                         resultSet.getString("date"),
@@ -94,7 +94,7 @@ Trip trip = getById(trip_id);
 
     @Override
     public boolean save(Trip trip) {
-        String sql = "INSERT INTO trips (car_id,price,path,date,time,not_free_places,free_places,status) VALUES (?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO trips (car_id,price,path,date,time,not_free_places,free_places) VALUES (?,?,?,?,?,?,?);";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -105,7 +105,6 @@ Trip trip = getById(trip_id);
             preparedStatement.setString(5,trip.getTime());
             preparedStatement.setInt(6,trip.getNotFreePlaces());
             preparedStatement.setInt(7,trip.getFreePlaces());
-            preparedStatement.setString(8,trip.getStatus());
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException throwables) {

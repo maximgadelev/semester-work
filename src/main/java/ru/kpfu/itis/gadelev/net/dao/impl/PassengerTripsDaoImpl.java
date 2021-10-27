@@ -33,7 +33,6 @@ preparedStatement.setString(2,status);
             List<Trip> trips= new ArrayList<>();
             while (resultSet.next()) {
                 Trip trip = new Trip(
-                        resultSet.getInt("admin_id"),
                         resultSet.getInt("car_id"),
                         resultSet.getString("date"),
                         resultSet.getInt("price"),

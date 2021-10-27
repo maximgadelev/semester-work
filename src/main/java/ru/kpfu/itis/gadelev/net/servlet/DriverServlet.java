@@ -17,9 +17,7 @@ import java.io.IOException;
 
 @WebServlet("/driver")
 public class DriverServlet extends HttpServlet {
-    CarDao<Car> carDao = new CarDaoImpl();
     CarService carService = new CarServiceImpl();
-    TripDao<Trip> tripDao=new TripDaoImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();

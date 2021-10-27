@@ -22,7 +22,7 @@ public class PassengerActiveTripsServlet extends HttpServlet {
         int passenger_id = 0;
 
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("passenger_id")) {
+            if (cookie.getName().equals("passenger_id")){
                 passenger_id = Integer.parseInt(cookie.getValue());
             }
         }
