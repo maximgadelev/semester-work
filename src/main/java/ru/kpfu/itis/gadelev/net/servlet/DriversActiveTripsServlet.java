@@ -32,7 +32,7 @@ public class DriversActiveTripsServlet extends HttpServlet {
         }
 
         List<TripDto> tripDtoList = tripService.getByDriverIdAndStatus(driver_id,"Активна");
-            req.setAttribute("driverTrips",tripDtoList);
+            req.setAttribute("driverActiveTrips",tripDtoList);
             req.setAttribute("car",carService.get(driver_id));
 
                 req.getRequestDispatcher("ActiveDriverTrips.ftl").forward(req, resp);

@@ -15,9 +15,14 @@ public class LogoutServlet extends HttpServlet {
         req.getSession().removeAttribute("driver");
         req.getSession().removeAttribute("driverCar");
         req.getSession().removeAttribute("trip");
+        req.getSession().removeAttribute("places");
+        req.getSession().removeAttribute("driverEndTrips");
+        req.getSession().removeAttribute("driverActiveTrips");
+        req.getSession().removeAttribute("passengersActiveTrips");
+        req.getSession().removeAttribute("passengersEndTrips");
         Cookie[] cookies = req.getCookies();
         for (Cookie cookie : cookies){
-            if (cookie.getName().equals("passenger_id") || cookie.getName().equals("driver_id")){
+            if (cookie.getName().equals("passenger_id") || cookie.getName().equals("driver_id") || cookie.getName().equals("places")){
                 cookie.setMaxAge(0);
                 resp.addCookie(cookie);
             }

@@ -1,16 +1,16 @@
 <#ftl encoding='UTF-8'>
 <#import "/templates/common.ftl" as common>
 <#import "/templates/navigation.ftl" as navigation>
-
 <@common.htmlTemplate pageName="DriverActiveTrips">
     <@navigation.loggedDriver/>
 <#if car?has_content>
-    <#if driverTrips??>
-        <#if driverTrips?has_content>
-            <#list driverTrips as t>
+    <#if driverActiveTrips??>
+        <#if driverActiveTrips?has_content>
+            <#list driverActiveTrips as t>
                 Дата:${t.date}
                 Время:${t.time}
                 Цена:${(t.price)}
+                Путь:${(t.path)}
                 <form action="/driverActiveTrips" method="post">
                     <input type="hidden" name="tripId"
                            value='${t.id}'>

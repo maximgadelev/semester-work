@@ -9,6 +9,7 @@
         <a href="/driver">Профиль</a>
         <a href="/logout">Выйти</a>
         <a href="/driverActiveTrips">Ваши текущие поездки</a>
+        <a href="/driverEndTrips">Ваши завершенные поездки</a>
     </#macro>
     <#macro unloggedUser>
         <nav>
