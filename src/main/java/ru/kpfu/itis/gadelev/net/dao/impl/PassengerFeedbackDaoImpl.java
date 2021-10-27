@@ -27,13 +27,14 @@ public class PassengerFeedbackDaoImpl implements FeedbackDao<PassengerFeedback> 
 
     @Override
     public boolean save(PassengerFeedback passengerFeedback) {
-        String sql = "INSERT INTO passengers_feedback (feedback_id,passenger_id,text) VALUES (?,?,?);";
+        String sql = "INSERT INTO passengers_feedback (passenger_id,text,from_driver_id) VALUES (?,?,?);";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, passengerFeedback.getId());
-            preparedStatement.setInt(2,passengerFeedback.getPassenger_id());
-            preparedStatement.setString(3,passengerFeedback.getText());
+            preparedStatement.setInt(1,passengerFeedback.getPassenger_id());
+            preparedStatement.setString(2,passengerFeedback.getText());
+            preparedStatement.setInt(3,passengerFeedback.getDriver_id());
+            preparedStatement.executeUpdate();
             return true;
         } catch (SQLException throwables) {
             LOGGER.warn("Failed to save new feedBack", throwables);

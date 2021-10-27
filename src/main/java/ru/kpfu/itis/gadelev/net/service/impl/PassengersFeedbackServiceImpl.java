@@ -25,6 +25,8 @@ public class PassengersFeedbackServiceImpl implements PassengersFeedbackService 
     public boolean save(PassengerFeedback passengersFeedback) {
         return feedbackDao.save(new PassengerFeedback(passengersFeedback.getId(),
                 passengersFeedback.getPassenger_id(),
-                passengersFeedback.getText()));
+                passengersFeedback.getText(),
+                passengersFeedback.getDriver_id())
+        );
     }
 }

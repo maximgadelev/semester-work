@@ -4,11 +4,27 @@ public class PassengerFeedback {
     int id;
     int passenger_id;
     String text;
+    int driver_id;
 
-    public PassengerFeedback(int id, int passenger_id, String text) {
+    public PassengerFeedback(int id, int passenger_id, String text,int driver_id) {
         this.id = id;
         this.passenger_id = passenger_id;
         this.text = text;
+        this.driver_id=driver_id;
+    }
+
+    public PassengerFeedback(int passenger_id, String text, int driver_id) {
+        this.passenger_id = passenger_id;
+        this.text = text;
+        this.driver_id = driver_id;
+    }
+
+    public int getDriver_id() {
+        return driver_id;
+    }
+
+    public void setDriver_id(int driver_id) {
+        this.driver_id = driver_id;
     }
 
     public int getId() {

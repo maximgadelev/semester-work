@@ -1,15 +1,11 @@
 package ru.kpfu.itis.gadelev.net.servlet;
-
-
-
 import ru.kpfu.itis.gadelev.net.dto.PassengerDto;
-import ru.kpfu.itis.gadelev.net.dto.TripDto;
-import ru.kpfu.itis.gadelev.net.model.Passenger;
 import ru.kpfu.itis.gadelev.net.service.PassengersTripService;
 import ru.kpfu.itis.gadelev.net.service.impl.PassengersTripServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +20,8 @@ public class TripsPassengerServlet extends HttpServlet {
          int tripId=Integer.parseInt(req.getParameter("tripId"));
          List<PassengerDto> passengerDtoList = passengersTripService.getPassengerByTrip(tripId);
          req.setAttribute("tripsPassengers",passengerDtoList);
+//         int passengerId=Integer.parseInt(req.getParameter("pId"));
+//         req.setAttribute("neededPassenger",passengerDtoList.get(Integer.parseInt(req.getParameter("pId"))));;
         req.getRequestDispatcher("tripsPassenger.ftl").forward(req,resp);
         }
     }
