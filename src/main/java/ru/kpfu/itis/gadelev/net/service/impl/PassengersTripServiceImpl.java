@@ -23,7 +23,6 @@ public class PassengersTripServiceImpl implements PassengersTripService {
        List<Trip> trips = passengerTripsDao.getPassengerTripsByStatus(passenger_id,status);
        return trips.stream().map(trip -> new TripDto(
                trip.getId(),
-               trip.getAdmin_id(),
                trip.getCar_id(),
                trip.getDate(),
                trip.getPrice(),

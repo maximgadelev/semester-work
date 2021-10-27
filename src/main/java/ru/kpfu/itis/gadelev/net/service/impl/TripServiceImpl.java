@@ -24,7 +24,6 @@ public class TripServiceImpl implements TripService {
     @Override
     public boolean save(Trip trip) {
         return tripDao.save(new Trip(
-                trip.getAdmin_id(),
                 trip.getCar_id(),
                 trip.getDate(),
                 trip.getPrice(),
@@ -36,12 +35,10 @@ public class TripServiceImpl implements TripService {
         ));
     }
 
-    @Override
-    public List<TripDto> getByDriverId(int driver_id) {
-        List<Trip> trips = tripDao.getTripsByDriverId(driver_id);
+    public List<TripDto> getByDriverIdAndStatus(int driver_id,String status) {
+        List<Trip> trips = tripDao.getTripsByDriverId(driver_id,status);
         return trips.stream().map(trip -> new TripDto(
                 trip.getId(),
-                trip.getAdmin_id(),
                 trip.getCar_id(),
                 trip.getDate(),
                 trip.getPrice(),
@@ -56,7 +53,7 @@ public class TripServiceImpl implements TripService {
     @Override
     public TripDto getById(int trip_id) {
         Trip trip = tripDao.getById(trip_id);
-        return new TripDto(trip.getId(),trip.getAdmin_id(),trip.getCar_id(),trip.getDate(),trip.getPrice(),trip.getPath(),trip.getTime(),trip.getNotFreePlaces(),trip.getFreePlaces(),trip.getStatus());
+        return new TripDto(trip.getId(),trip.getCar_id(),trip.getDate(),trip.getPrice(),trip.getPath(),trip.getTime(),trip.getNotFreePlaces(),trip.getFreePlaces(),trip.getStatus());
     }
 
     @Override
@@ -64,7 +61,6 @@ public class TripServiceImpl implements TripService {
        List<Trip> trips =tripDao.getBySearch(date,time,path,freePlaces);
         return trips.stream().map(trip->new TripDto(
                 trip.getId(),
-                trip.getAdmin_id(),
                 trip.getCar_id(),
                 trip.getDate(),
                 trip.getPrice(),
@@ -79,5 +75,10 @@ public class TripServiceImpl implements TripService {
     @Override
     public void changeFreePlaces(int trip_id, int places) {
         tripDao.changeFreePlaces(trip_id,places);
+    }
+
+    @Override
+    public void changeStatus(int id) {
+        tripDao.changeStatus(id);
     }
 }

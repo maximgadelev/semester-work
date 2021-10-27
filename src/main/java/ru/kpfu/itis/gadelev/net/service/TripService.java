@@ -13,10 +13,11 @@ public interface TripService {
     List<TripDto> getAll();
 
     boolean save(Trip trip);
-    List<TripDto> getByDriverId(int driver_id);
+    List<TripDto> getByDriverIdAndStatus(int driver_id, String status);
   TripDto getById(int trip_id);
 
     List<TripDto> getBySearch(String path,String date,String time,int freePlaces);
     
     void changeFreePlaces(int trip_id,int places);
+    void changeStatus(int id);
 }

@@ -18,16 +18,16 @@ public class TripDaoImpl implements TripDao<Trip> {
     private static final Logger LOGGER = LoggerFactory.getLogger(PassengerDaoImpl.class);
     private final Connection connection = PostgresConnectionHelper.getConnection();
     @Override
-    public List<Trip> getTripsByDriverId(int driver_id) {
+    public List<Trip> getTripsByDriverId(int driver_id,String status) {
         try{
-            PreparedStatement preparedStatement =connection.prepareStatement("select *from(select *from (select drivers.driver_id,car_id from drivers inner join cars c on drivers.driver_id = c.driver_id ) as driver_car inner join trips t on t.car_id=driver_car.car_id)as driver_trips where driver_id = ?");
+            PreparedStatement preparedStatement =connection.prepareStatement("select *from(select *from (select drivers.driver_id,car_id from drivers inner join cars c on drivers.driver_id = c.driver_id ) as driver_car inner join trips t on t.car_id=driver_car.car_id)as driver_trips where driver_id = ? and status = ?");
             preparedStatement.setInt(1,driver_id);
+            preparedStatement.setString(2,status);
             List<Trip> trips = new ArrayList<>();
             ResultSet resultSet =preparedStatement.executeQuery();
             while (resultSet.next()){
                 Trip trip=new Trip(
                         resultSet.getInt("trip_id"),
-                        resultSet.getInt("admin_id"),
                         resultSet.getInt("car_id"),
                         resultSet.getString("date"),
                         resultSet.getInt("price"),
@@ -55,7 +55,6 @@ public class TripDaoImpl implements TripDao<Trip> {
             if(resultSet.next()){
                  new Trip(
                         resultSet.getInt("trip_id"),
-                        resultSet.getInt("admin_id"),
                         resultSet.getInt("car_id"),
                         resultSet.getString("date"),
                         resultSet.getInt("price"),
@@ -95,19 +94,18 @@ Trip trip = getById(trip_id);
 
     @Override
     public boolean save(Trip trip) {
-        String sql = "INSERT INTO trips (admin_id,car_id,price,path,date,time,not_free_places,free_places,status) VALUES (?,?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO trips (car_id,price,path,date,time,not_free_places,free_places,status) VALUES (?,?,?,?,?,?,?,?);";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,trip.getAdmin_id());
-            preparedStatement.setInt(2, trip.getCar_id());
-            preparedStatement.setInt(3,trip.getPrice());
-            preparedStatement.setString(4, trip.getPath());
-            preparedStatement.setString(5,trip.getDate());
-            preparedStatement.setString(6,trip.getTime());
-            preparedStatement.setInt(7,trip.getNotFreePlaces());
-            preparedStatement.setInt(8,trip.getFreePlaces());
-            preparedStatement.setString(9,trip.getStatus());
+            preparedStatement.setInt(1, trip.getCar_id());
+            preparedStatement.setInt(2,trip.getPrice());
+            preparedStatement.setString(3, trip.getPath());
+            preparedStatement.setString(4,trip.getDate());
+            preparedStatement.setString(5,trip.getTime());
+            preparedStatement.setInt(6,trip.getNotFreePlaces());
+            preparedStatement.setInt(7,trip.getFreePlaces());
+            preparedStatement.setString(8,trip.getStatus());
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException throwables) {
@@ -129,7 +127,6 @@ Trip trip = getById(trip_id);
             while (resultSet.next()) {
                 Trip trip= new  Trip(
                         resultSet.getInt("trip_id"),
-                        resultSet.getInt("admin_id"),
                         resultSet.getInt("car_id"),
                         resultSet.getString("date"),
                         resultSet.getInt("price"),
@@ -145,6 +142,18 @@ Trip trip = getById(trip_id);
         } catch (SQLException throwables) {
             LOGGER.warn("Failed to find trips", throwables);
             return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public void changeStatus(int id) {
+        String sql =("UPDATE trips set status ='Завершена' where trip_id = ?");
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            LOGGER.warn("Failed to update trip", throwables);
         }
     }
 }

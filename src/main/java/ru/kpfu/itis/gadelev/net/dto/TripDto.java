@@ -2,7 +2,6 @@ package ru.kpfu.itis.gadelev.net.dto;
 
 public class TripDto {
     private int id;
-    private int admin_id;
     private int car_id;
     private String date;
     private int price;
@@ -19,9 +18,8 @@ public class TripDto {
         this.time = time;
     }
 
-    public TripDto(int id, int admin_id, int car_id, String date, int price, String path, String time,int notFreePlaces,int freePlaces,String status) {
+    public TripDto(int id, int car_id, String date, int price, String path, String time,int notFreePlaces,int freePlaces,String status) {
         this.id = id;
-        this.admin_id = admin_id;
         this.car_id = car_id;
         this.date = date;
         this.price = price;
@@ -39,15 +37,6 @@ public class TripDto {
     public void setId(int id) {
         this.id = id;
     }
-
-    public int getAdmin_id() {
-        return admin_id;
-    }
-
-    public void setAdmin_id(int admin_id) {
-        this.admin_id = admin_id;
-    }
-
     public int getCar_id() {
         return car_id;
     }

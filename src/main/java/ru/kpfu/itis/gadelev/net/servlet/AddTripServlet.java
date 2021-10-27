@@ -38,7 +38,8 @@ public class AddTripServlet  extends HttpServlet {
         }
         Car driverCar = carDao.get(driver_id);
 
-      if(tripService.save(new Trip(1,driverCar.getId(),req.getParameter("date"),Integer.parseInt(req.getParameter("price")),req.getParameter("path"),req.getParameter("time"),driverCar.getNumberOfPlaces()))){
+      if(tripService.save(new Trip(
+              driverCar.getId(),req.getParameter("date"),Integer.parseInt(req.getParameter("price")),req.getParameter("path"),req.getParameter("time"),driverCar.getNumberOfPlaces()))){
           resp.sendRedirect("/driver");
       }
     }

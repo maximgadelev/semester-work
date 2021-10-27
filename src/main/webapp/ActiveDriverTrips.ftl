@@ -11,6 +11,11 @@
                 Дата:${t.date}
                 Время:${t.time}
                 Цена:${(t.price)}
+                <form action="/driverActiveTrips" method="post">
+                    <input type="hidden" name="tripId"
+                           value='${t.id}'>
+                    <input type="submit" value="Завершить данную поездку">
+                </form>
             </#list>
         </#if>
         <#else>

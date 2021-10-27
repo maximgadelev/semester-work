@@ -2,7 +2,6 @@ package ru.kpfu.itis.gadelev.net.servlet;
 
 import ru.kpfu.itis.gadelev.net.dao.TripDao;
 import ru.kpfu.itis.gadelev.net.dao.impl.TripDaoImpl;
-import ru.kpfu.itis.gadelev.net.dto.CarDto;
 import ru.kpfu.itis.gadelev.net.dto.TripDto;
 import ru.kpfu.itis.gadelev.net.model.Car;
 import ru.kpfu.itis.gadelev.net.model.Trip;
@@ -19,12 +18,10 @@ import java.util.List;
 
 @WebServlet(urlPatterns ="/driverActiveTrips")
 public class DriversActiveTripsServlet extends HttpServlet {
-    TripDao<Trip> tripDao=new TripDaoImpl();
     CarService<Car> carService = new CarServiceImpl();
     TripService tripService = new TripServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession httpSession = req.getSession();
         Cookie[] cookies = req.getCookies();
         int driver_id = 0;
 
@@ -34,12 +31,17 @@ public class DriversActiveTripsServlet extends HttpServlet {
             }
         }
 
-        List<TripDto> tripDtoList = tripService.getByDriverId(driver_id);
+        List<TripDto> tripDtoList = tripService.getByDriverIdAndStatus(driver_id,"Активна");
             req.setAttribute("driverTrips",tripDtoList);
-            ;
             req.setAttribute("car",carService.get(driver_id));
 
                 req.getRequestDispatcher("ActiveDriverTrips.ftl").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        tripService.changeStatus(Integer.parseInt(req.getParameter("tripId")));
+        resp.sendRedirect("/driverActiveTrips");
 
     }
 }
