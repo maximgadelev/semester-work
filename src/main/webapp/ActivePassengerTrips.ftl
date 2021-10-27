@@ -4,9 +4,9 @@
 
 <@common.htmlTemplate pageName="ActiveTrips">
     <@navigation.loggedUser/>
-    <#if passengersTrips??>
-        <#if passengersTrips?has_content>
-            <#list passengersTrips as t>
+    <#if passengersActiveTrips??>
+        <#if passengersActiveTrips?has_content>
+            <#list passengersActiveTrips as t>
                 Дата:${t.date}
                 Время:${t.time}
                 Цена:${(t.price)}

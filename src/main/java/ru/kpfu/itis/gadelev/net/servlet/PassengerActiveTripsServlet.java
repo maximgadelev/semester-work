@@ -27,7 +27,7 @@ public class PassengerActiveTripsServlet extends HttpServlet {
             }
         }
        List<TripDto> tripDtoList= passengersTripService.getPassengerTripsByStatus(passenger_id,"Активна");
-        req.setAttribute("passengersTrips",tripDtoList);
+        req.setAttribute("passengersActiveTrips",tripDtoList);
         req.getRequestDispatcher("ActivePassengerTrips.ftl").forward(req,resp);
     }
 }

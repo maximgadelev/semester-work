@@ -34,7 +34,7 @@
         background-size: 100%;
     }
     nav{
-        width: 960px;
+        width:100%;
     }
     nav:before{
         content: '';

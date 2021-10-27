@@ -22,10 +22,11 @@
     <#macro loggedUser>
         <nav>
             <ul>
-    <li><a href="main.ftl">Главная</a></li>
-      <li><a href="/passenger">Профиль Пассажира</a></li>
-                <li> <a href="/logout">Выйти</a></li>
-                <li><a href ="/activePassengerTrips">Ваши поездки</a></li>
+               <li><a href="main.ftl">Главная</a></li>
+               <li><a href="/passenger">Профиль Пассажира</a></li>
+                <li><a href ="/activePassengerTrips">Ваши текущие поездки</a></li>
+                <li><a href="/passengerEndTrips">Ваши завершенные поездки</a></li>
+                <li><a href="/logout">Выйти</a></li>
             </ul>
         </nav>
     </#macro>

@@ -27,7 +27,7 @@
     </#if>
     <style>
         nav{
-            width: 960px;
+            width: 100%;
         }
         nav:before{
             content: '';
