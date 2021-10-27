@@ -4,10 +4,13 @@ import ru.kpfu.itis.gadelev.net.dao.TripDao;
 import ru.kpfu.itis.gadelev.net.dao.impl.TripDaoImpl;
 import ru.kpfu.itis.gadelev.net.dto.TripDto;
 import ru.kpfu.itis.gadelev.net.model.Car;
+import ru.kpfu.itis.gadelev.net.model.Passenger;
 import ru.kpfu.itis.gadelev.net.model.Trip;
 import ru.kpfu.itis.gadelev.net.service.CarService;
+import ru.kpfu.itis.gadelev.net.service.PassengersTripService;
 import ru.kpfu.itis.gadelev.net.service.TripService;
 import ru.kpfu.itis.gadelev.net.service.impl.CarServiceImpl;
+import ru.kpfu.itis.gadelev.net.service.impl.PassengersTripServiceImpl;
 import ru.kpfu.itis.gadelev.net.service.impl.TripServiceImpl;
 
 import javax.servlet.ServletException;
@@ -34,8 +37,7 @@ public class DriversActiveTripsServlet extends HttpServlet {
         List<TripDto> tripDtoList = tripService.getByDriverIdAndStatus(driver_id,"Активна");
             req.setAttribute("driverActiveTrips",tripDtoList);
             req.setAttribute("car",carService.get(driver_id));
-
-                req.getRequestDispatcher("ActiveDriverTrips.ftl").forward(req, resp);
+            req.getRequestDispatcher("ActiveDriverTrips.ftl").forward(req, resp);
     }
 
     @Override

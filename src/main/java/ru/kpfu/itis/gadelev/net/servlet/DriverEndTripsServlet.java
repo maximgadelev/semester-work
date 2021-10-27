@@ -29,7 +29,6 @@ public class DriverEndTripsServlet extends HttpServlet {
                 driver_id = Integer.parseInt(cookie.getValue());
             }
         }
-
         List<TripDto> tripDtoList = tripService.getByDriverIdAndStatus(driver_id,"Завершена");
         req.setAttribute("driverEndTrips",tripDtoList);
         req.setAttribute("car",carService.get(driver_id));

@@ -18,13 +18,36 @@ public class PassengerTripsDaoImpl implements PassengerTripsDao {
     private static final Logger LOGGER = LoggerFactory.getLogger(PassengerTripsDao.class);
     private final Connection connection = PostgresConnectionHelper.getConnection();
     @Override
-    public List getPassengerByTrip(int trip_id) {
-        return null;
+    public List<Passenger> getPassengerByTrip(int trip_id) {
+        String sql = "select distinct *from (select *from passengers_trip inner join passengers p on p.passenger_id = passengers_trip.passenger_id) as passenger_list where trip_id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,trip_id);
+            List<Passenger> passengers = new ArrayList<>();
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                Passenger passenger = new Passenger(
+                        resultSet.getInt("passenger_id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("surname"),
+                        resultSet.getString("login"),
+                        resultSet.getString("password"),
+                        resultSet.getDouble("rating"),
+                        resultSet.getString("date_of_birth"),
+                        resultSet.getString("profile_image")
+                );
+               passengers.add(passenger);
+            }
+            return passengers;
+        }catch (SQLException throwables){
+            LOGGER.warn("Failed to select passengers");
+            return new ArrayList<>();
+        }
     }
 
     @Override
     public List<Trip> getPassengerTripsByStatus(int passenger_id,String status) {
-        String sql = "select *from (select *from  passengers_trip inner join trips t on passengers_trip.trip_id = t.trip_id where passenger_id = ? order by status) as trips where status = ?;";
+        String sql = "select distinct *from (select *from  passengers_trip inner join trips t on passengers_trip.trip_id = t.trip_id where passenger_id = ? order by status) as trips where status = ?;";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 preparedStatement.setInt(1,passenger_id);

@@ -16,6 +16,11 @@
                            value='${t.id}'>
                     <input type="submit" value="Завершить данную поездку">
                 </form>
+                <form action ="/tripsPassenger" method="get">
+                    <input type="hidden" name="tripId"
+                    value='${t.id}'>
+                    <input type="submit" value="Посмотреть пассажиров">
+                </form>
             </#list>
 
 <form action="/addTrip" method="get">

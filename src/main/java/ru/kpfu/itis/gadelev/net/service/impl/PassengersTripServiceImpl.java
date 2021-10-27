@@ -15,7 +15,16 @@ public class PassengersTripServiceImpl implements PassengersTripService {
     private final PassengerTripsDao passengerTripsDao = new PassengerTripsDaoImpl();
     @Override
     public List<PassengerDto> getPassengerByTrip(int trip_id) {
-        return null;
+        List<Passenger> passengers = passengerTripsDao.getPassengerByTrip(trip_id);
+        return passengers.stream().map(passenger -> new PassengerDto(
+                passenger.getId(),
+                passenger.getName(),
+                passenger.getSurname(),
+                passenger.getLogin(),
+                passenger.getRating(),
+                passenger.getDateOfBirth(),
+                passenger.getProfileImage()
+        )).collect(Collectors.toList());
     }
 
     @Override

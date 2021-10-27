@@ -10,6 +10,11 @@
     Дата:${t.date}
     Время:${t.time}
     Цена:${(t.price)}
+    <form action ="/tripsPassenger" method="get">
+        <input type="hidden" name="tripId"
+               value='${t.id}'>
+        <input type="submit" value="Посмотреть пассажиров">
+    </form>
 </#list>
     </#if>
     </#if>
