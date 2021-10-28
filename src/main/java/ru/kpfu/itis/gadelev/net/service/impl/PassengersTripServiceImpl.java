@@ -2,8 +2,10 @@ package ru.kpfu.itis.gadelev.net.service.impl;
 
 import ru.kpfu.itis.gadelev.net.dao.PassengerTripsDao;
 import ru.kpfu.itis.gadelev.net.dao.impl.PassengerTripsDaoImpl;
+import ru.kpfu.itis.gadelev.net.dto.DriverDto;
 import ru.kpfu.itis.gadelev.net.dto.PassengerDto;
 import ru.kpfu.itis.gadelev.net.dto.TripDto;
+import ru.kpfu.itis.gadelev.net.model.Driver;
 import ru.kpfu.itis.gadelev.net.model.Passenger;
 import ru.kpfu.itis.gadelev.net.model.Trip;
 import ru.kpfu.itis.gadelev.net.service.PassengersTripService;
@@ -46,5 +48,18 @@ public class PassengersTripServiceImpl implements PassengersTripService {
     @Override
     public boolean savePassengerTrip(int passenger_id, int trip_id) {
         return passengerTripsDao.savePassengerTrip(passenger_id,trip_id);
+    }
+
+    @Override
+    public DriverDto getDriverByTrip(int trip_id) {
+     Driver driver = (Driver)passengerTripsDao.getDriverBytrip(trip_id);
+        return new DriverDto(driver.getId(),
+                driver.getName(),
+                driver.getSurname(),
+                driver.getLogin(),
+                driver.getRating(),
+                driver.getDateOfBirth(),
+                driver.getProfileImage()
+                );
     }
 }

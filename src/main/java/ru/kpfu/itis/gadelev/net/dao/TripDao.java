@@ -12,4 +12,5 @@ public interface TripDao<T> {
     boolean save(T t);
     List<T> getBySearch(String date,String time,String path,int freePlaces);
     void changeStatus(int id);
+
 }

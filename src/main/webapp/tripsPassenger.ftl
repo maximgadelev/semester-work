@@ -9,7 +9,7 @@
             <#list tripsPassengers as p>
                 Имя:${p.name}
                 Фамилия:${p.surname}
-                <form action="/addFeedback" method="get">
+                <form action="/addFeedbackForPassenger" method="get">
                     <input type="hidden" name="pId"
                            value='${p.id}'>
                     <input type="submit" value="Написать отзыв">

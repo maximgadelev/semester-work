@@ -20,8 +20,6 @@ public class TripsPassengerServlet extends HttpServlet {
          int tripId=Integer.parseInt(req.getParameter("tripId"));
          List<PassengerDto> passengerDtoList = passengersTripService.getPassengerByTrip(tripId);
          req.setAttribute("tripsPassengers",passengerDtoList);
-//         int passengerId=Integer.parseInt(req.getParameter("pId"));
-//         req.setAttribute("neededPassenger",passengerDtoList.get(Integer.parseInt(req.getParameter("pId"))));;
         req.getRequestDispatcher("tripsPassenger.ftl").forward(req,resp);
         }
     }

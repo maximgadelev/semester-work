@@ -11,6 +11,7 @@
                 Время:${t.time}
                 Цена:${(t.price)}
                 Путь:${(t.path)}
+                id:${t.id}
                 <form action="/driverActiveTrips" method="post">
                     <input type="hidden" name="tripId"
                            value='${t.id}'>
@@ -27,6 +28,8 @@
 <form action="/addTrip" method="get">
     <button type="submit">Добавить новую поездку</button>
     <br>
-        </#if>
+    <#else>
         У вас пока нет машины,чтобы совершать поездки:(
+        </#if>
+
 </@common.htmlTemplate>

@@ -10,6 +10,14 @@
                 Дата:${t.date}
                 Время:${t.time}
                 Цена:${(t.price)}
+                id:${t.path}
+                car_id:${(t.car_id)}
+                id:${t.id}
+                <form action="/driversTrip" method="get">
+                    <input type="hidden" name="id_trip"
+                    value='${t.id}'>
+                    <input type="submit" value="Узнать водителя">
+                </form>
             </#list>
         </#if>
     </#if>

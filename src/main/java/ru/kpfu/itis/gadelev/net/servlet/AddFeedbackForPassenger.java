@@ -11,14 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-@WebServlet(urlPatterns = "/addFeedback")
-public class AddFeedback  extends HttpServlet {
+@WebServlet(urlPatterns = "/addFeedbackForPassenger")
+public class AddFeedbackForPassenger extends HttpServlet {
     PassengersFeedbackService feedbackService = new PassengersFeedbackServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String string = req.getParameter("pId");
         resp.addCookie(new Cookie("feedbackPassengerId",string));
-        req.getRequestDispatcher("AddFeedback.ftl").forward(req,resp);
+        req.getRequestDispatcher("AddFeedbackForPassenger.ftl").forward(req,resp);
     }
 
     @Override
