@@ -13,7 +13,15 @@ public class PassengerServiceImpl implements PassengerService {
     private final PassengerDao<Passenger> passengerDao = new PassengerDaoImpl();
     @Override
     public PassengerDto get(int id) {
-        return null;
+        Passenger passenger =(passengerDao.getById(id));
+        return new PassengerDto(passenger.getId(),
+                passenger.getName(),
+                passenger.getSurname(),
+                passenger.getLogin(),
+                passenger.getRating(),
+                passenger.getDateOfBirth()
+                ,passenger.getProfileImage());
+
     }
 
     @Override

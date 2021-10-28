@@ -16,8 +16,8 @@
                            <#list drivers as d>
               <#if p.driver_id=d.id>
                   От кого:${d.name}
-
               </#if>
+
                 </#list>
                 </#if>
                 </#if>

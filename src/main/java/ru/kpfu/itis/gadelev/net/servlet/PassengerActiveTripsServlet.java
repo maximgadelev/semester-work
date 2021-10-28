@@ -26,6 +26,7 @@ public class PassengerActiveTripsServlet extends HttpServlet {
                 passenger_id = Integer.parseInt(cookie.getValue());
             }
         }
+
        List<TripDto> tripDtoList= passengersTripService.getPassengerTripsByStatus(passenger_id,"Активна");
         req.setAttribute("passengersActiveTrips",tripDtoList);
         req.getRequestDispatcher("ActivePassengerTrips.ftl").forward(req,resp);
