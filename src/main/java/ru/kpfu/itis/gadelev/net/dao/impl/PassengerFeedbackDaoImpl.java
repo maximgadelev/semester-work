@@ -9,7 +9,9 @@ import ru.kpfu.itis.gadelev.net.model.PassengerFeedback;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PassengerFeedbackDaoImpl implements FeedbackDao<PassengerFeedback> {
@@ -22,7 +24,26 @@ public class PassengerFeedbackDaoImpl implements FeedbackDao<PassengerFeedback> 
 
     @Override
     public List<PassengerFeedback> getAll(int id) {
-        return null;
+        String sql = "SELECT*FROM passengers_feedback where passenger_id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,id);
+            List<PassengerFeedback> passengersFeedbacks = new ArrayList<>();
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                PassengerFeedback passengerFeedback = new PassengerFeedback(
+                        resultSet.getInt("feedback_id"),
+                        resultSet.getInt("passenger_id"),
+                        resultSet.getString("text"),
+                        resultSet.getInt("from_driver_id")
+                );
+                passengersFeedbacks.add(passengerFeedback);
+            }
+            return passengersFeedbacks;
+        }catch (SQLException throwables){
+            LOGGER.warn("Failed to select passengersFeedback");
+            return new ArrayList<>();
+        }
     }
 
     @Override

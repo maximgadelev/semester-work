@@ -7,9 +7,9 @@
     <#macro loggedDriver>
         <a href="main.ftl">Главная</a>
         <a href="/driver">Профиль</a>
-        <a href="/logout">Выйти</a>
         <a href="/driverActiveTrips">Ваши текущие поездки</a>
         <a href="/driverEndTrips">Ваши завершенные поездки</a>
+        <a href="/logout">Выйти</a>
     </#macro>
     <#macro unloggedUser>
         <nav>
@@ -27,6 +27,7 @@
                <li><a href="/passenger">Профиль Пассажира</a></li>
                 <li><a href ="/activePassengerTrips">Ваши текущие поездки</a></li>
                 <li><a href="/passengerEndTrips">Ваши завершенные поездки</a></li>
+                <li><a href="/passengersFeedback">Отзывы о вас</a></li>
                 <li><a href="/logout">Выйти</a></li>
             </ul>
         </nav>

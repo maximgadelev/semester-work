@@ -9,7 +9,7 @@ public class DriverDto {
     private String date_of_birth;
     private String profile_image;
 
-    public DriverDto(int id,String profile_image,String name, String surname, String login,double rating,String dateOfBirth) {
+    public DriverDto(int id,String name, String surname, String login,double rating,String dateOfBirth,String profile_image) {
         this.id=id;
         this.name = name;
         this.surname = surname;

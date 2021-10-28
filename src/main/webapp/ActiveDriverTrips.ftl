@@ -22,13 +22,11 @@
                     <input type="submit" value="Посмотреть пассажиров">
                 </form>
             </#list>
-
+        </#if>
+</#if>
 <form action="/addTrip" method="get">
     <button type="submit">Добавить новую поездку</button>
     <br>
         </#if>
-        <#else>
         У вас пока нет машины,чтобы совершать поездки:(
-    </#if>
-</#if>
 </@common.htmlTemplate>
