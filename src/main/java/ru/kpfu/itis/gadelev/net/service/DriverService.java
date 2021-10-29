@@ -12,4 +12,5 @@ public interface DriverService<T> {
     List<DriverDto> getAll();
     void changePhoto(int id,String url);
     boolean save(Driver driver);
+    void updateRating(double rating,int id);
 }

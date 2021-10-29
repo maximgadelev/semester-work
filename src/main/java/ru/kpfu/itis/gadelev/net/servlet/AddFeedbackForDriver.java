@@ -1,7 +1,9 @@
 package ru.kpfu.itis.gadelev.net.servlet;
 
 import ru.kpfu.itis.gadelev.net.model.DriverFeedback;
+import ru.kpfu.itis.gadelev.net.service.DriverService;
 import ru.kpfu.itis.gadelev.net.service.DriversFeedbackService;
+import ru.kpfu.itis.gadelev.net.service.impl.DriverServiceImpl;
 import ru.kpfu.itis.gadelev.net.service.impl.DriversFeedbackServiceImpl;
 
 import javax.servlet.ServletException;
@@ -15,6 +17,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/addFeedbackForDriver")
 public class AddFeedbackForDriver extends HttpServlet {
     DriversFeedbackService driversFeedbackService = new DriversFeedbackServiceImpl();
+    DriverService driverService = new DriverServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String driver_id=req.getParameter("driverId");
@@ -37,8 +40,10 @@ public class AddFeedbackForDriver extends HttpServlet {
                 drId = Integer.parseInt(cookie.getValue());
             }
         }
-        driversFeedbackService.save(new DriverFeedback(drId,req.getParameter("feedback"),passenger_id
-        ));
+        DriverFeedback driverFeedback = new DriverFeedback(drId,req.getParameter("feedback"),passenger_id,Integer.parseInt(req.getParameter("rating")));
+        double rating=driversFeedbackService.getRating(driverFeedback.getDriver_id());
+        driverService.updateRating(rating,driverFeedback.getDriver_id());
+        driversFeedbackService.save(driverFeedback);
         resp.sendRedirect("/passenger");
     }
 }

@@ -35,7 +35,8 @@ public class DriverFeedbackDaoImpl implements FeedbackDao<DriverFeedback> {
                         resultSet.getInt("feedback_id"),
                         resultSet.getInt("driver_id"),
                         resultSet.getString("text"),
-                        resultSet.getInt("from_passenger_id")
+                        resultSet.getInt("from_passenger_id"),
+                        resultSet.getInt("added_rating")
                 );
                 driverFeedbacks.add(driverFeedback);
             }
@@ -48,18 +49,39 @@ public class DriverFeedbackDaoImpl implements FeedbackDao<DriverFeedback> {
 
     @Override
     public boolean save(DriverFeedback driverFeedback) {
-        String sql = "INSERT INTO drivers_feedback (driver_id,text,from_passenger_id) VALUES (?,?,?);";
+        String sql = "INSERT INTO drivers_feedback (driver_id,text,from_passenger_id,added_rating) VALUES (?,?,?,?);";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1,driverFeedback.getDriver_id());
             preparedStatement.setString(2,driverFeedback.getText());
             preparedStatement.setInt(3,driverFeedback.getPassenger_id());
+            preparedStatement.setInt(4,driverFeedback.getAdded_rating());
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException throwables) {
             LOGGER.warn("Failed to save new feedBack", throwables);
             return false;
+        }
+    }
+
+    @Override
+    public double getRating(int id) {
+        String sql =" (SELECT sum(added_rating),count(added_rating) from drivers_feedback where driver_id = ?)";
+        try{
+            double count=0;
+            double rating=0;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             preparedStatement.setInt(1,id);
+             ResultSet resultSet=preparedStatement.executeQuery();
+             if(resultSet.next()){
+                  count=resultSet.getInt("count");
+                  rating=resultSet.getInt("sum");
+             }
+             return rating/count;
+        }catch (SQLException throwables){
+            LOGGER.warn("Failed to getRaiting",throwables);
+            return 0;
         }
     }
 }

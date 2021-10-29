@@ -5,12 +5,14 @@ public class DriverFeedbackDto {
     int driver_id;
     String text;
     int passenger_id;
+    int added_rating;
 
-    public DriverFeedbackDto(int id, int driver_id, String text,int passenger_id) {
+    public DriverFeedbackDto(int id, int driver_id, String text,int passenger_id,int added_rating) {
         this.id = id;
         this.driver_id = driver_id;
         this.text = text;
         this.passenger_id = passenger_id;
+        this.added_rating=added_rating;
     }
 
     public int getPassenger_id() {

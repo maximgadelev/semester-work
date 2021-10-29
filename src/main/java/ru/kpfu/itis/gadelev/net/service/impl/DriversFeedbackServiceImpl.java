@@ -24,7 +24,8 @@ public class DriversFeedbackServiceImpl implements DriversFeedbackService {
                driverFeedback.getId(),
                driverFeedback.getDriver_id(),
                driverFeedback.getText(),
-               driverFeedback.getPassenger_id()
+               driverFeedback.getPassenger_id(),
+               driverFeedback.getAdded_rating()
        )).collect(Collectors.toList());
     }
 
@@ -33,6 +34,12 @@ public class DriversFeedbackServiceImpl implements DriversFeedbackService {
         return feedbackDao.save(new DriverFeedback(driverFeedback.getId(),
                 driverFeedback.getDriver_id(),
                 driverFeedback.getText(),
-                driverFeedback.getPassenger_id()));
+                driverFeedback.getPassenger_id(),
+                driverFeedback.getAdded_rating()));
+    }
+
+    @Override
+    public double getRating(int id) {
+        return feedbackDao.getRating(id);
     }
 }

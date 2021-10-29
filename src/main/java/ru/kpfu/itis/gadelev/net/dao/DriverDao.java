@@ -8,7 +8,7 @@ public interface DriverDao<T> {
         boolean save(T t);
         T getById(int id);
         void changePhoto(int id, String url);
-
+        void updateRating(double rating,int id);
 
     }
 

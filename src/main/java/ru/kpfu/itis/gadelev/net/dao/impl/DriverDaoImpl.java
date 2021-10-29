@@ -106,4 +106,17 @@ public class DriverDaoImpl implements DriverDao<Driver> {
             LOGGER.warn("Failed to update driver.", throwables);
         }
     }
+
+    @Override
+    public void updateRating(double rating,int id) {
+        String sql="UPDATE drivers SET rating = ? where driver_id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setDouble(1,rating);
+            preparedStatement.setInt(2,id);
+            preparedStatement.executeUpdate();
+        }catch (SQLException sqlException){
+            LOGGER.warn("Failed to update rating",sqlException);
+        }
+    }
 }

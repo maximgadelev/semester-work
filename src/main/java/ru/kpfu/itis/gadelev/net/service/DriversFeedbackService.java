@@ -8,4 +8,5 @@ public interface DriversFeedbackService {
     DriverFeedbackDto get(int id);
     List<DriverFeedbackDto> getAll(int id);
     boolean save(DriverFeedback driverFeedback);
+    double getRating(int id);
 }

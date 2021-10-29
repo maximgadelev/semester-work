@@ -3,6 +3,7 @@
 <@common.htmlTemplate pageName="addFeedBackForDriver">
     <form action="/addFeedbackForDriver" method="post">
         <input name="feedback" type="text" placeholder="Отзыв">
+        <input name="rating" type="number" placeholder="Оцените поездку от 1 до 5">
         <input type="submit" value="Сохранить отзыв">
     </form>
 </@common.htmlTemplate>

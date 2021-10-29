@@ -62,4 +62,9 @@ public class PassengerFeedbackDaoImpl implements FeedbackDao<PassengerFeedback> 
             return false;
         }
     }
+
+    @Override
+    public double getRating(int id) {
+        return 0;
     }
+}

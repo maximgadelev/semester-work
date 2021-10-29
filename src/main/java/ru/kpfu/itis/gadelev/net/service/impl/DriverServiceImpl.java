@@ -41,7 +41,13 @@ public class DriverServiceImpl implements DriverService {
                 driver.getDateOfBirth()
         ));
     }
-@Override
+
+    @Override
+    public void updateRating(double rating, int id) {
+        driverDao.updateRating(rating,id);
+    }
+
+    @Override
     public void changePhoto(int id, String url) {
         driverDao.changePhoto(id,url);
     }
