@@ -3,10 +3,13 @@
 <#import "/templates/navigation.ftl" as navigation>
 
 <@common.htmlTemplate pageName="Login">
+
     <@navigation.unloggedUser/>
     <@login.loginTemplate/>
+
 </@common.htmlTemplate>
 <style>
+
     nav{
         width: 960px;
     }
@@ -42,3 +45,7 @@
         background:  #ffdb06;
     }
 </style>
+
+
+
+

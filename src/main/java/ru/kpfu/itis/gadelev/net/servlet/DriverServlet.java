@@ -35,10 +35,16 @@ public class DriverServlet extends HttpServlet {
             }
         }
         HttpSession httpSession = req.getSession();
-        CarDto carDto = carService.get(driver_id);
+        try {
+            CarDto carDto = carService.get(driver_id);
             httpSession.setAttribute("car", carDto);
+            resp.addCookie(new Cookie("car_id",String.valueOf(carDto.getId())));
             req.setAttribute("driver", httpSession.getAttribute("driver"));
             req.getRequestDispatcher("driver.ftl").forward(req, resp);
+        }catch (NullPointerException e){
+            req.setAttribute("driver", httpSession.getAttribute("driver"));
+            req.getRequestDispatcher("driver.ftl").forward(req, resp);
+        }
 
 }
 }

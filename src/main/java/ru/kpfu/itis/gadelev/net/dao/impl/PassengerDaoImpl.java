@@ -68,7 +68,7 @@ public class PassengerDaoImpl implements PassengerDao<Passenger> {
     }
 
     public boolean save(Passenger passenger) {
-        String sql = "INSERT INTO passengers (name, surname, login, password,date_of_birth,profile_image) VALUES (?, ?, ?, ?, ?,?);";
+        String sql = "INSERT INTO passengers (name, surname, login, password,date_of_birth) VALUES (?, ?, ?, ?, ?);";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -77,8 +77,6 @@ public class PassengerDaoImpl implements PassengerDao<Passenger> {
             preparedStatement.setString(3, passenger.getLogin());
             preparedStatement.setString(4, passenger.getPassword());
             preparedStatement.setString(5, passenger.getDateOfBirth());
-            preparedStatement.setString(6, passenger.getProfileImage());
-
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException throwables) {

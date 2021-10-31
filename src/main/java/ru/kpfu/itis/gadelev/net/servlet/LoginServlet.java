@@ -32,7 +32,7 @@ private final DriverDao<Driver> driverDao = new DriverDaoImpl();
                 if (password.equals(passenger.getPassword())) {
                     req.getSession().setAttribute("passenger", passenger);
                     resp.addCookie(new Cookie("passenger_id",String.valueOf(passenger.getId())));
-                    req.getRequestDispatcher("main.ftl").forward(req, resp);
+                    resp.sendRedirect("/passenger");
                 }else{
                     resp.sendRedirect("/login");
                 }
@@ -42,7 +42,7 @@ private final DriverDao<Driver> driverDao = new DriverDaoImpl();
                 if (password.equals(driver.getPassword())) {
                     req.getSession().setAttribute("driver", driver);
                     resp.addCookie(new Cookie("driver_id",String.valueOf(driver.getId())));
-                    req.getRequestDispatcher("main.ftl").forward(req, resp);
+                    resp.sendRedirect("/driver");
                 } else {
                     resp.sendRedirect("/login");
                 }

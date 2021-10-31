@@ -19,19 +19,30 @@ import java.util.List;
 public class DriverEndTripsServlet extends HttpServlet {
     CarService<Car> carService = new CarServiceImpl();
     TripService tripService = new TripServiceImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();
         int driver_id = 0;
-
+        int car_id = 0;
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("driver_id")) {
                 driver_id = Integer.parseInt(cookie.getValue());
             }
         }
-        List<TripDto> tripDtoList = tripService.getByDriverIdAndStatus(driver_id,"Завершена");
-        req.setAttribute("driverEndTrips",tripDtoList);
-        req.setAttribute("car",carService.get(driver_id));
-        req.getRequestDispatcher("EndDriverTrips.ftl").forward(req,resp);
+
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("car_id")) {
+                car_id = Integer.parseInt(cookie.getValue());
+            }
+        }
+        List<TripDto> tripDtoList = tripService.getByDriverIdAndStatus(driver_id, "Завершена");
+        if (car_id == 0) {
+            req.setAttribute("driverEndTrips", tripDtoList);
+            req.setAttribute("car", carService.get(driver_id));
+            req.getRequestDispatcher("EndDriverTrips.ftl").forward(req, resp);
+        } else {
+            req.getRequestDispatcher("EndDriverTrips.ftl").forward(req, resp);
+        }
     }
 }

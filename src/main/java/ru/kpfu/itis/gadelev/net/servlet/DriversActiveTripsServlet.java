@@ -27,17 +27,26 @@ public class DriversActiveTripsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();
         int driver_id = 0;
-
+        int car_id = 0;
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("driver_id")) {
                 driver_id = Integer.parseInt(cookie.getValue());
             }
         }
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("car_id")) {
+                car_id = Integer.parseInt(cookie.getValue());
+            }
+        }
 
-        List<TripDto> tripDtoList = tripService.getByDriverIdAndStatus(driver_id,"Активна");
-            req.setAttribute("driverActiveTrips",tripDtoList);
-            req.setAttribute("car",carService.get(driver_id));
+        List<TripDto> tripDtoList = tripService.getByDriverIdAndStatus(driver_id, "Активна");
+        req.setAttribute("driverActiveTrips", tripDtoList);
+        if (car_id == 0) {
             req.getRequestDispatcher("ActiveDriverTrips.ftl").forward(req, resp);
+        } else {
+            req.setAttribute("car", carService.get(driver_id));
+            req.getRequestDispatcher("ActiveDriverTrips.ftl").forward(req, resp);
+        }
     }
 
     @Override
