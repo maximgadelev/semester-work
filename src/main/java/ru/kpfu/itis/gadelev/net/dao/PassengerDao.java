@@ -10,5 +10,6 @@ public interface PassengerDao<T> {
     boolean save(T t);
     T getById(int id);
     void changePhoto(int id, String url);
+    void updateRating(int id,double rating);
 }
 

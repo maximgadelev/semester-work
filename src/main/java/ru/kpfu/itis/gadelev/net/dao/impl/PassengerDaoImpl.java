@@ -126,5 +126,18 @@ public class PassengerDaoImpl implements PassengerDao<Passenger> {
             LOGGER.warn("Failed to update user.", throwables);
         }
     }
+
+    @Override
+    public void updateRating(int id,double rating) {
+        String sql="UPDATE passengers SET rating = ? where passenger_id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setDouble(1,rating);
+            preparedStatement.setInt(2,id);
+            preparedStatement.executeUpdate();
+        }catch (SQLException sqlException){
+            LOGGER.warn("Failed to update rating",sqlException);
+        }
+    }
 }
 

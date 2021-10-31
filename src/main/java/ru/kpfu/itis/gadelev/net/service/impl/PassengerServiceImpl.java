@@ -45,4 +45,9 @@ return passengerDao.save(new Passenger(
     public void changePhoto(int id, String url) {
         passengerDao.changePhoto(id,url);
     }
+
+    @Override
+    public void updateRating(int id, double rating) {
+        passengerDao.updateRating(id,rating);
+    }
 }

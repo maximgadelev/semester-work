@@ -12,6 +12,7 @@ public interface PassengerService<T> {
 
     boolean save(Passenger passenger);
     void changePhoto(int id,String url);
+    void updateRating(int id,double rating);
 
 }
 

@@ -10,4 +10,5 @@ public interface PassengersFeedbackService{
     PassengersFeedbackDto get(int id);
     List<PassengersFeedbackDto> getAll(int id);
     boolean save(PassengerFeedback passengerFeedback);
+    double getRating(int id);
 }
