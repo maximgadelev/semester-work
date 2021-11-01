@@ -15,6 +15,14 @@ public class PassengersFeedbackDto {
         this.added_rating=added_rating;
     }
 
+    public int getAdded_rating() {
+        return added_rating;
+    }
+
+    public void setAdded_rating(int added_rating) {
+        this.added_rating = added_rating;
+    }
+
     public int getId() {
         return id;
     }

@@ -34,6 +34,7 @@ public class PassengersFeedbackServlet extends HttpServlet {
 
                 driverDtos.add(driverService.getById(feedback.getDriver_id()));
             }
+
         for (int i = 0; i <driverDtos.size() ; i++) {
             for (int j = 0; j <driverDtos.size() ; j++) {
                 if (driverDtos.get(i).getId() == driverDtos.get(j).getId()) {

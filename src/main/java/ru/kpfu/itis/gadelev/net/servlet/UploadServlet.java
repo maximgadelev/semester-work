@@ -2,6 +2,7 @@ package ru.kpfu.itis.gadelev.net.servlet;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import ru.kpfu.itis.gadelev.net.dto.DriverDto;
 import ru.kpfu.itis.gadelev.net.dto.PassengerDto;
 import ru.kpfu.itis.gadelev.net.helper.CloudinaryHelper;
 import ru.kpfu.itis.gadelev.net.helper.ImageHelper;
@@ -40,24 +41,24 @@ public class UploadServlet extends HttpServlet {
         File file = getFile(request);
         HttpSession httpSession = request.getSession();
         if(httpSession.getAttribute("passenger")!=null){
-            Passenger passenger = (Passenger)httpSession.getAttribute("passenger");
+            PassengerDto passengerDto = (PassengerDto)httpSession.getAttribute("passenger");
 
-            String filename = "passengerPhoto" + passenger.getId();
+            String filename = "passengerPhoto" + passengerDto.getId();
 
             Map upload =  cloudinary.uploader().upload(file,
                     ObjectUtils.asMap("public_id", filename));
             String url = (String) upload.get("url");
-            passenger.setProfileImage(url);
-            service.changePhoto(passenger.getId(),url);
+            passengerDto.setProfile_image(url);
+            service.changePhoto(passengerDto.getId(),url);
             response.sendRedirect("/passenger");
 
         }else if(httpSession.getAttribute("driver")!=null){
-            Driver driver = (Driver) httpSession.getAttribute("driver");
+            DriverDto driver = (DriverDto) httpSession.getAttribute("driver");
             String filename = "DriverPhoto" + driver.getId();
             Map upload =  cloudinary.uploader().upload(file,
                     ObjectUtils.asMap("public_id", filename));
             String url = (String) upload.get("url");
-            driver.setProfileImage(url);
+            driver.setProfile_image(url);
             driverService.changePhoto(driver.getId(),url);
             response.sendRedirect("/driver");
         }

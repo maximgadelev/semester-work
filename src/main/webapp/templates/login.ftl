@@ -1,7 +1,7 @@
 <#ftl encoding='UTF-8'>
 <#macro loginTemplate>
 
-<form action="/login" method ="post" onsubmit="return validateForm()">
+<form action="/login" method ="post">
         <div class="form">
                 <h1>Вход</h1>
                 <div class="input-form">
@@ -15,7 +15,9 @@
                 <div class="input-form-button">
                         <input type="submit" value="Войти">
                 </div>
+                <p id="pls" hidden="true" style="color:red">Введены неккоректные данные!</p>
             <input type="checkbox" name="remember" value="Запомнить меня">
+                <div id="help" hidden="true" style="color: red"><p>Ошибка</p></div>
         </div>
 </form>
 
@@ -102,4 +104,7 @@
                 background: skyblue;
         }
 </style>
+        <script>
+
+        </script>
 </#macro>
