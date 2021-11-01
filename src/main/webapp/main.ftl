@@ -19,6 +19,9 @@
         <input name ="date" type="text" placeholder="Дата">
         <input  name = "time" type="text" placeholder="Время">
         <input name ="places" type="number" placeholder="Количество мест">
+        <div class = "radio">
+            <p><input type="radio" name="check" id="price" value="price">Сначала самые дешевые поездки</p>
+        </div>
     </form>
     Главная страница!
 </@common.htmlTemplate>

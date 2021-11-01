@@ -1,6 +1,7 @@
 <#ftl encoding='UTF-8'>
 <#macro loginTemplate>
-<form action="/login" method ="post">
+
+<form action="/login" method ="post" onsubmit="return validateForm()">
         <div class="form">
                 <h1>Вход</h1>
                 <div class="input-form">
@@ -14,6 +15,7 @@
                 <div class="input-form-button">
                         <input type="submit" value="Войти">
                 </div>
+            <input type="checkbox" name="remember" value="Запомнить меня">
         </div>
 </form>
 
@@ -99,6 +101,10 @@
         .input-form-button input[type="submit"]:hover{
                 background: skyblue;
         }
-
 </style>
+        <script>
+                function validateForm(){
+                        alert("Логин или пароль введены неверно!")
+                }
+        </script>
 </#macro>

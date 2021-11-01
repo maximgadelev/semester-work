@@ -36,19 +36,19 @@ private final DriverDao<Driver> driverDao = new DriverDaoImpl();
                 }else{
                     resp.sendRedirect("/login");
                 }
-            }else{
-            Driver driver = driverDao.getByLogin(login);
-            if(driver!=null) {
-                if (password.equals(driver.getPassword())) {
-                    req.getSession().setAttribute("driver", driver);
-                    resp.addCookie(new Cookie("driver_id",String.valueOf(driver.getId())));
-                    resp.sendRedirect("/driver");
+            }else {
+                Driver driver = driverDao.getByLogin(login);
+                if (driver != null) {
+                    if (password.equals(driver.getPassword())) {
+                        req.getSession().setAttribute("driver", driver);
+                        resp.addCookie(new Cookie("driver_id", String.valueOf(driver.getId())));
+                        resp.sendRedirect("/driver");
+                    } else {
+                        resp.sendRedirect("/login");
+                    }
                 } else {
                     resp.sendRedirect("/login");
                 }
-            }else {
-                resp.sendRedirect("/login");
             }
-        }
     }
 }

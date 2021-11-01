@@ -1,7 +1,7 @@
 <#ftl encoding='UTF-8'>
 <#macro registrationTemplate>
     <head>
-    <form action="/registration" method="post">
+    <form action="/registration" method="post" onsubmit="return validateForm()">
         <div class="form">
             <h1>Регистрация</h1>
             <div class="input-form">

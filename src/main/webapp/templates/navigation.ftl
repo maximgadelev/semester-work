@@ -4,14 +4,21 @@
         <a href="passenger.ftl">Профиль</a>
         <a href="/logout">Выйти</a>
     </#macro>
+<head>
     <#macro loggedDriver>
-        <a href="main.ftl">Главная</a>
-        <a href="/driver">Профиль</a>
-        <a href="/driverActiveTrips">Ваши текущие поездки</a>
-        <a href="/driverEndTrips">Ваши завершенные поездки</a>
-        <a href="/driversFeedback">Отзывы о вас</a>
-        <a href="/logout">Выйти</a>
+
+        <nav>
+            <ul>
+       <li><a href="main.ftl">Главная</a></li>
+        <li><a href="/driver">Профиль</a></li>
+        <li><a href="/driverActiveTrips">Ваши текущие поездки</a></li>
+        <li><a href="/driverEndTrips">Ваши завершенные поездки</a></li>
+        <li><a href="/driversFeedback">Отзывы о вас</a></li>
+        <li><a href="/logout">Выйти</a></li>
+            </ul>
+        </nav>
     </#macro>
+</head>
     <#macro unloggedUser>
         <nav>
             <ul>
@@ -21,6 +28,7 @@
         </nav>
 
     </#macro>
+<head>
     <#macro loggedUser>
         <nav>
             <ul>
@@ -33,6 +41,7 @@
             </ul>
         </nav>
     </#macro>
+</head>
 <style>
     nav{
         width: 960px;

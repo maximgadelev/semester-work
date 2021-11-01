@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns ="/main")
 public class MainServlet extends HttpServlet {
@@ -32,6 +34,11 @@ public class MainServlet extends HttpServlet {
         if(trips.isEmpty()){
             resp.sendRedirect("/main");
         }else{
+            if(req.getParameter("check").equals("price")){
+                trips=trips.stream().sorted(((o1, o2) -> o1.getPrice()-o2.getPrice())).collect(Collectors.toList());
+                req.getSession().setAttribute("trips",trips);
+                resp.sendRedirect("/tripsBySearch");
+            }else{
             req.getSession().setAttribute("trips",trips);
             resp.sendRedirect("/tripsBySearch");
         }
@@ -39,4 +46,5 @@ public class MainServlet extends HttpServlet {
 
     }
 
+}
 }
