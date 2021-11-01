@@ -5,16 +5,18 @@ public class PassengerDto {
     private String name;
     private String surname;
     private String login;
+    private String password;
     private double rating;
     private String date_of_birth;
     private String profile_image;
 
 
-    public PassengerDto(int id,String name, String surname, String login, double rating, String date_of_birth, String profile_image) {
-        this.id=id;
+    public PassengerDto(int id, String name, String surname, String login, String password, double rating, String date_of_birth, String profile_image) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.login = login;
+        this.password = password;
         this.rating = rating;
         this.date_of_birth = date_of_birth;
         this.profile_image = profile_image;
@@ -74,6 +76,14 @@ public class PassengerDto {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

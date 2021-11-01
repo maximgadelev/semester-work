@@ -5,9 +5,12 @@
 <@common.htmlTemplate pageName="Main">
     <#if passenger?has_content>
         <@navigation.loggedUser/>
-    </#if>
-    <#if driver?has_content>
+        <#else>
+         <#if driver?has_content>
         <@navigation.loggedDriver/>
+        <#else>
+            <@navigation.unloggedUser/>
+    </#if>
     </#if>
 
 

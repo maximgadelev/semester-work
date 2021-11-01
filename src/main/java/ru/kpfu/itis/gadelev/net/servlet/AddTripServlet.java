@@ -3,6 +3,7 @@ package ru.kpfu.itis.gadelev.net.servlet;
 import ru.kpfu.itis.gadelev.net.dao.CarDao;
 import ru.kpfu.itis.gadelev.net.dao.impl.CarDaoImpl;
 import ru.kpfu.itis.gadelev.net.dto.CarDto;
+import ru.kpfu.itis.gadelev.net.dto.DriverDto;
 import ru.kpfu.itis.gadelev.net.model.Car;
 import ru.kpfu.itis.gadelev.net.model.Trip;
 import ru.kpfu.itis.gadelev.net.service.CarService;
@@ -30,13 +31,9 @@ public class AddTripServlet  extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Cookie[] cookies = req.getCookies();
-        int driver_id=0;
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("driver_id")) {
-                driver_id = Integer.parseInt(cookie.getValue());
-            }
-        }
+        DriverDto driverDto = (DriverDto) req.getSession().getAttribute("driver");
+        int driver_id =driverDto.getId();
+
         CarDto driverCar = carService.get(driver_id);
 
       if(tripService.save(new Trip(

@@ -13,14 +13,13 @@
         <div class="row">
             <div class="col-xs-12 col-sm-9">
 
-                <!-- User profile -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">Профиль пользователя</h4>
                     </div>
                     <div class="panel-body">
                         <div class="profile__avatar">
-                            <img src="${driver.profileImage}" alt="...">
+                            <img src="${driver.profile_image}" alt="...">
                         </div>
                         <div class="profile__header">
                             <h3>${driver.name} ${driver.surname} <small>Водитель</small></h3>

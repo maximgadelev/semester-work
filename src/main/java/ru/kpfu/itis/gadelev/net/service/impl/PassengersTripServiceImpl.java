@@ -23,6 +23,7 @@ public class PassengersTripServiceImpl implements PassengersTripService {
                 passenger.getName(),
                 passenger.getSurname(),
                 passenger.getLogin(),
+                passenger.getPassword(),
                 passenger.getRating(),
                 passenger.getDateOfBirth(),
                 passenger.getProfileImage()
@@ -57,6 +58,7 @@ public class PassengersTripServiceImpl implements PassengersTripService {
                 driver.getName(),
                 driver.getSurname(),
                 driver.getLogin(),
+                driver.getPassword(),
                 driver.getRating(),
                 driver.getDateOfBirth(),
                 driver.getProfileImage()

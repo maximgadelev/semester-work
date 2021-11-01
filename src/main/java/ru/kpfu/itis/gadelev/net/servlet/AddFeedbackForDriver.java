@@ -1,5 +1,6 @@
 package ru.kpfu.itis.gadelev.net.servlet;
 
+import ru.kpfu.itis.gadelev.net.dto.PassengerDto;
 import ru.kpfu.itis.gadelev.net.model.DriverFeedback;
 import ru.kpfu.itis.gadelev.net.service.DriverService;
 import ru.kpfu.itis.gadelev.net.service.DriversFeedbackService;
@@ -28,12 +29,9 @@ public class AddFeedbackForDriver extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();
-        int passenger_id = 0;
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("passenger_id")) {
-                passenger_id = Integer.parseInt(cookie.getValue());
-            }
-        }
+        PassengerDto passengerDto = (PassengerDto)req.getSession().getAttribute("passenger");
+        int passenger_id = passengerDto.getId();
+
         int drId=0;
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("driverIdFeedback")) {

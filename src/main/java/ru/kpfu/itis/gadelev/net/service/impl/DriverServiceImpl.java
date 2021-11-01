@@ -16,14 +16,38 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public DriverDto getById(int id) {
         Driver driver = driverDao.getById(id);
-        return new DriverDto(
-                driver.getId(),
-                driver.getName(),
-                driver.getSurname(),
-                driver.getLogin(),
-                driver.getRating(),
-                driver.getDateOfBirth(),
-                driver.getProfileImage());
+        if (driver != null) {
+            return new DriverDto(
+                    driver.getId(),
+                    driver.getName(),
+                    driver.getSurname(),
+                    driver.getLogin(),
+                    driver.getPassword(),
+                    driver.getRating(),
+                    driver.getDateOfBirth(),
+                    driver.getProfileImage());
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public DriverDto getByLogin(String login) {
+        Driver driver = driverDao.getByLogin(login);
+        if (driver != null) {
+            return new DriverDto(
+                    driver.getId(),
+                    driver.getName(),
+                    driver.getSurname(),
+                    driver.getLogin(),
+                    driver.getPassword(),
+
+                    driver.getRating(),
+                    driver.getDateOfBirth(),
+                    driver.getProfileImage());
+        }else{
+          return null;
+        }
     }
 
     @Override

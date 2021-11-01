@@ -26,14 +26,10 @@ public class DriverServlet extends HttpServlet {
     CarService carService = new CarServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Cookie[] cookies = req.getCookies();
         int driver_id = 0;
 
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("driver_id")) {
-                driver_id = Integer.parseInt(cookie.getValue());
-            }
-        }
+        DriverDto driverDto=(DriverDto)req.getSession().getAttribute("driver");
+        driver_id=driverDto.getId();
         HttpSession httpSession = req.getSession();
         try {
             CarDto carDto = carService.get(driver_id);

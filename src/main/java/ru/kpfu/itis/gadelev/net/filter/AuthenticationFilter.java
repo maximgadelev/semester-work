@@ -20,7 +20,7 @@ Filter.super.init(filterConfig);
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String uri = request.getRequestURI();
-        if(request.getSession().getAttribute("passenger")==null && request.getSession().getAttribute("driver")==null && !uri.contains("login") && !uri.contains("registration")){
+        if(request.getSession().getAttribute("passenger")==null && request.getSession().getAttribute("driver")==null && !uri.contains("login") && !uri.contains("registration") &&!uri.contains("main") && !uri.contains("tripsBySearch ")){
             response.sendRedirect("/login");
         }else {
             filterChain.doFilter(servletRequest,servletResponse);

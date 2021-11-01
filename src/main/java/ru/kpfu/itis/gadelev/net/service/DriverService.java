@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface DriverService<T> {
     DriverDto getById(int id);
-
+DriverDto getByLogin(String login);
     List<DriverDto> getAll();
     void changePhoto(int id,String url);
     boolean save(Driver driver);

@@ -102,9 +102,4 @@
                 background: skyblue;
         }
 </style>
-        <script>
-                function validateForm(){
-                        alert("Логин или пароль введены неверно!")
-                }
-        </script>
 </#macro>

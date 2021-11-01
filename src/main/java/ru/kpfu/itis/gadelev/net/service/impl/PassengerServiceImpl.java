@@ -14,14 +14,35 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public PassengerDto get(int id) {
         Passenger passenger =(passengerDao.getById(id));
-        return new PassengerDto(passenger.getId(),
-                passenger.getName(),
-                passenger.getSurname(),
-                passenger.getLogin(),
-                passenger.getRating(),
-                passenger.getDateOfBirth()
-                ,passenger.getProfileImage());
+        if(passenger!=null) {
+            return new PassengerDto(passenger.getId(),
+                    passenger.getName(),
+                    passenger.getSurname(),
+                    passenger.getLogin(),
+                    passenger.getPassword(),
+                    passenger.getRating(),
+                    passenger.getDateOfBirth()
+                    , passenger.getProfileImage());
+        }else{
+            return null;
+        }
+    }
 
+    @Override
+    public PassengerDto getByLogin(String login) {
+        Passenger passenger = passengerDao.getByLogin(login);
+        if (passenger != null) {
+            return new PassengerDto(passenger.getId(),
+                    passenger.getName(),
+                    passenger.getSurname(),
+                    passenger.getLogin(),
+                    passenger.getPassword(),
+                    passenger.getRating(),
+                    passenger.getDateOfBirth()
+                    , passenger.getProfileImage());
+        }else{
+            return null;
+        }
     }
 
     @Override

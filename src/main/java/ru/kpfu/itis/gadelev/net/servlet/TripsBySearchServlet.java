@@ -1,5 +1,6 @@
 package ru.kpfu.itis.gadelev.net.servlet;
 
+import ru.kpfu.itis.gadelev.net.dto.PassengerDto;
 import ru.kpfu.itis.gadelev.net.dto.TripDto;
 import ru.kpfu.itis.gadelev.net.service.PassengersTripService;
 import ru.kpfu.itis.gadelev.net.service.TripService;
@@ -13,8 +14,9 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/tripsBySearch")
 public class TripsBySearchServlet extends HttpServlet {
-    PassengersTripService passengersTripService =new PassengersTripServiceImpl();
+    PassengersTripService passengersTripService = new PassengersTripServiceImpl();
     TripService tripService = new TripServiceImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();
@@ -33,21 +35,19 @@ public class TripsBySearchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();
-        int passenger_id=0;
+        PassengerDto passengerDto = (PassengerDto)req.getSession().getAttribute("passenger");
+        int passenger_id = passengerDto.getId();
         int userNumberOfPlaces = 0;
-        for(Cookie cookie:cookies) {
-            if (cookie.getName().equals("passenger_id")) {
-                passenger_id = Integer.parseInt(cookie.getValue());
-            }
-            if(cookie.getName().equals("places")){
-                userNumberOfPlaces=Integer.parseInt(cookie.getValue());
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("places")) {
+                userNumberOfPlaces = Integer.parseInt(cookie.getValue());
             }
         }
-
-            if(passengersTripService.savePassengerTrip(passenger_id,(Integer.parseInt(req.getParameter("tripId"))))){
-                tripService.changeFreePlaces(Integer.parseInt(req.getParameter("tripId")),userNumberOfPlaces);
+            if (passengersTripService.savePassengerTrip(passenger_id, (Integer.parseInt(req.getParameter("tripId"))))) {
+                tripService.changeFreePlaces(Integer.parseInt(req.getParameter("tripId")), userNumberOfPlaces);
                 resp.sendRedirect("/passenger");
             }
         }
     }
+
 

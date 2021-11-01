@@ -34,7 +34,7 @@ public class MainServlet extends HttpServlet {
         if(trips.isEmpty()){
             resp.sendRedirect("/main");
         }else{
-            if(req.getParameter("check").equals("price")){
+            if(req.getParameter("check")!=null){
                 trips=trips.stream().sorted(((o1, o2) -> o1.getPrice()-o2.getPrice())).collect(Collectors.toList());
                 req.getSession().setAttribute("trips",trips);
                 resp.sendRedirect("/tripsBySearch");

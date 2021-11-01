@@ -2,6 +2,7 @@ package ru.kpfu.itis.gadelev.net.servlet;
 
 import ru.kpfu.itis.gadelev.net.dao.TripDao;
 import ru.kpfu.itis.gadelev.net.dao.impl.TripDaoImpl;
+import ru.kpfu.itis.gadelev.net.dto.DriverDto;
 import ru.kpfu.itis.gadelev.net.dto.TripDto;
 import ru.kpfu.itis.gadelev.net.model.Car;
 import ru.kpfu.itis.gadelev.net.model.Passenger;
@@ -26,13 +27,10 @@ public class DriversActiveTripsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();
-        int driver_id = 0;
+        DriverDto driverDto = (DriverDto) req.getSession().getAttribute("driver");
+        int driver_id =driverDto.getId();
         int car_id = 0;
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("driver_id")) {
-                driver_id = Integer.parseInt(cookie.getValue());
-            }
-        }
+
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("car_id")) {
                 car_id = Integer.parseInt(cookie.getValue());

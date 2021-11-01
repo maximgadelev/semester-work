@@ -24,6 +24,7 @@
             <ul>
        <li><a href="login.ftl">Логин</a></li>
                 <li><a href="registration.ftl">Регистрация</a></li>
+                <li><a href="main">Главная</a> </li>
             </ul>
         </nav>
 
