@@ -35,6 +35,14 @@ public class DriverFeedbackDto {
         return driver_id;
     }
 
+    public int getAdded_rating() {
+        return added_rating;
+    }
+
+    public void setAdded_rating(int added_rating) {
+        this.added_rating = added_rating;
+    }
+
     public void setDriver_id(int driver_id) {
         this.driver_id = driver_id;
     }

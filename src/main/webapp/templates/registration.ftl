@@ -1,7 +1,8 @@
 <#ftl encoding='UTF-8'>
 <#macro registrationTemplate>
     <head>
-    <form action="/registration" method="post" onsubmit="return validateForm()">
+            <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <form action="/registration" method="post">
         <div class="form">
             <h1>Регистрация</h1>
             <div class="input-form">
@@ -37,6 +38,7 @@
                 background-position: right;
                 background-repeat: no-repeat;
                 background-size: 100%;
+                margin-top: 10px;
             }
             .form{
                 position: absolute;

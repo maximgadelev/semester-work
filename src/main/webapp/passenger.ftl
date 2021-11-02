@@ -65,6 +65,7 @@
             margin-right: 500px;
         }
         body{
+            margin-top: 10px;
             background: #f5f5f5;
         }
         .panel {

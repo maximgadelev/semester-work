@@ -2,7 +2,10 @@
 <#import "/templates/common.ftl" as common>
 <#import "/templates/navigation.ftl" as navigation>
 <@common.htmlTemplate pageName="DriverEndTrips">
+    <head>
 <@navigation.loggedDriver/>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
 <#if car?has_content>
 <#if driverEndTrips??>
 <#if driverEndTrips?has_content>
@@ -20,3 +23,5 @@
     </#if>
     </#if>
     </@common.htmlTemplate>
+<style>
+</style>

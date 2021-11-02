@@ -1,7 +1,9 @@
 <#ftl encoding='UTF-8'>
 <#import "/templates/common.ftl" as common>
 <#import "/templates/navigation.ftl" as navigation>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
 <@common.htmlTemplate pageName="Main">
     <#if passenger?has_content>
         <@navigation.loggedUser/>
@@ -12,16 +14,13 @@
             <@navigation.unloggedUser/>
     </#if>
     </#if>
-
-
-
     <form action="/main" method="post">
-        <input name="first" type="text" placeholder="Откуда">
+        <input name="first" type="text" placeholder="Откуда" required>
        <button type="submit"><i class="fa fa-search"></i></button>
-        <input name="second" type="text" placeholder="Куда">
-        <input name ="date" type="text" placeholder="Дата">
-        <input  name = "time" type="text" placeholder="Время">
-        <input name ="places" type="number" placeholder="Количество мест">
+        <input name="second" type="text" placeholder="Куда" required>
+        <input name ="date" type="text" placeholder="Дата" required>
+        <input  name = "time" type="text" placeholder="Время" required>
+        <input name ="places" type="number" placeholder="Количество мест" required>
         <div class = "radio">
             <p><input type="radio" name="check" id="price" value="price">Сначала самые дешевые поездки</p>
         </div>
@@ -38,40 +37,7 @@
         background-position: right;
         background-repeat: no-repeat;
         background-size: 100%;
-    }
-    nav{
-        width:100%;
-    }
-    nav:before{
-        content: '';
-        display: block;
-        height: 50px;
-        width: 100%;
-        background: rgb(81,186,215);
-        position: absolute;
-        left: 0;
-        z-index: -1;
-    }
-    ul{
-        margin: -10px;
-        padding: -10px;
-        list-style: none;
-        height: 50px;
-    }
-    ul li{
-        float: left;
-    }
-    ul li a{
-        color: #fff;
-        display: block;
-        height: 50px;
-        padding: 0 30px;
-        text-transform: uppercase;
-        text-decoration: none;
-        line-height: 50px;
-    }
-    ul li a:hover{
-        background:  #ffdb06;
+        margin-top: 10px;
     }
     form {
         text-align: center;

@@ -3,7 +3,10 @@
 <#import "/templates/navigation.ftl" as navigation>
 
 <@common.htmlTemplate pageName="EndTrips">
+    <head>
     <@navigation.loggedUser/>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
     <#if passengersEndTrips??>
         <#if passengersEndTrips?has_content>
             <#list passengersEndTrips as t>

@@ -1,7 +1,10 @@
 <#ftl encoding='UTF-8'>
 <#macro loginTemplate>
-
+<head>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
 <form action="/login" method ="post">
+
         <div class="form">
                 <h1>Вход</h1>
                 <div class="input-form">

@@ -15,3 +15,6 @@
        }
     </script>
 </@common.htmlTemplate>
+<style>
+
+</style>
