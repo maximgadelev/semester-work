@@ -20,6 +20,7 @@ public class LogoutServlet extends HttpServlet {
         req.getSession().removeAttribute("driverActiveTrips");
         req.getSession().removeAttribute("passengersActiveTrips");
         req.getSession().removeAttribute("passengersEndTrips");
+        req.getSession().removeAttribute("car");
         Cookie[] cookies = req.getCookies();
         for (Cookie cookie : cookies){
             if (cookie.getName().equals("passenger_id") || cookie.getName().equals("driver_id") || cookie.getName().equals("places") || cookie.getName().equals("car_id")){

@@ -28,9 +28,7 @@
             </#list>
         </#if>
 </#if>
-<form action="/addTrip" method="get">
-    <button type="submit">Добавить новую поездку</button>
-    <br>
+
     <#else>
         У вас пока нет машины,чтобы совершать поездки:(
         </#if>

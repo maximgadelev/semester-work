@@ -1,5 +1,6 @@
 package ru.kpfu.itis.gadelev.net.servlet;
 
+import ru.kpfu.itis.gadelev.net.dto.DriverDto;
 import ru.kpfu.itis.gadelev.net.model.Car;
 import ru.kpfu.itis.gadelev.net.model.Driver;
 import ru.kpfu.itis.gadelev.net.service.CarService;
@@ -20,11 +21,8 @@ public class AddCarServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();
         int driver_id=0;
-        for (Cookie cookie : cookies) {
-            if(cookie.getName().equals("driver_id")){
-                 driver_id=Integer.parseInt(cookie.getValue());
-            }
-        }
+        DriverDto driverDto=(DriverDto)req.getSession().getAttribute("driver");
+        driver_id=driverDto.getId();
         carService.save(new Car(req.getParameter("brand"),req.getParameter("number"),Integer.parseInt(req.getParameter("numberOfPlaces")),req.getParameter("model")),driver_id);
         resp.sendRedirect("/driver");
     }
