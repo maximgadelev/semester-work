@@ -36,7 +36,7 @@ public class PassengersFeedbackServlet extends HttpServlet {
             }
 
         for (int i = 0; i <driverDtos.size() ; i++) {
-            for (int j = 0; j <driverDtos.size() ; j++) {
+            for (int j = i+1; j <driverDtos.size() ; j++) {
                 if (driverDtos.get(i).getId() == driverDtos.get(j).getId()) {
                     driverDtos.remove(i);
                 }

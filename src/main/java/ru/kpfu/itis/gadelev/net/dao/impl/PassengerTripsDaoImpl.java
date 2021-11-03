@@ -94,7 +94,7 @@ public class PassengerTripsDaoImpl implements PassengerTripsDao {
 
     @Override
     public Driver getDriverBytrip(int trip_id) {
-        String sql = "select *from(select *from passengers_trip inner join trips t on t.trip_id = passengers_trip.trip_id where t.trip_id = ?) as trips_by_passenger inner join drivers d on trips_by_passenger.car_id=d.driver_id";
+        String sql = "select *from(select *from passengers_trip inner join trips t on t.trip_id = passengers_trip.trip_id where t.trip_id = ?) as trips_by_passenger inner join cars c on c.car_id=trips_by_passenger.car_id inner join drivers d on c.driver_id = d.driver_id";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, trip_id);

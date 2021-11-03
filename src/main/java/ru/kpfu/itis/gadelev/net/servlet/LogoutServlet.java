@@ -23,10 +23,9 @@ public class LogoutServlet extends HttpServlet {
         req.getSession().removeAttribute("car");
         Cookie[] cookies = req.getCookies();
         for (Cookie cookie : cookies){
-            if (cookie.getName().equals("passenger_id") || cookie.getName().equals("driver_id") || cookie.getName().equals("places") || cookie.getName().equals("car_id")){
                 cookie.setMaxAge(0);
                 resp.addCookie(cookie);
-            }
+
         }
 
         req.getRequestDispatcher("login.ftl").forward(req,resp);

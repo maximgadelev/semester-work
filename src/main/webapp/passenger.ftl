@@ -54,8 +54,7 @@
         </div>
         <div class="button">
             <form action="/upload" method="post" enctype="multipart/form-data">
-                Change profile photo:
-                <input type="file" name="file"> <input type="submit" value="upload">
+                <input type="file" name="file"> <input type="submit" value="Cменить фото">
             </form>
         </div>
     </div>
@@ -129,8 +128,8 @@
             }
         }
         .button{
-            margin-top: -50%;
-            margin-left: 75%;
+            margin-top: -30%;
+            margin-left: 20%;
         }
         nav{
             width: 100%;

@@ -6,6 +6,7 @@ import ru.kpfu.itis.gadelev.net.dao.impl.CarDaoImpl;
 import ru.kpfu.itis.gadelev.net.dao.impl.TripDaoImpl;
 import ru.kpfu.itis.gadelev.net.dto.CarDto;
 import ru.kpfu.itis.gadelev.net.dto.DriverDto;
+import ru.kpfu.itis.gadelev.net.helper.CookieHelper;
 import ru.kpfu.itis.gadelev.net.model.Car;
 import ru.kpfu.itis.gadelev.net.model.Driver;
 import ru.kpfu.itis.gadelev.net.model.Trip;
@@ -26,8 +27,8 @@ public class DriverServlet extends HttpServlet {
     CarService carService = new CarServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        CookieHelper.checkCookie(req);
         int driver_id = 0;
-
         DriverDto driverDto=(DriverDto)req.getSession().getAttribute("driver");
         driver_id=driverDto.getId();
         HttpSession httpSession = req.getSession();

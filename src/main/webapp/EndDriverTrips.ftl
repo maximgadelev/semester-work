@@ -41,6 +41,8 @@
                     </#list>
                 </#if>
             </#if>
+    <#else>
+        У вас пока нет машины,чтобы совершать поездки:(
         </#if>
     </@common.htmlTemplate>
 <style>

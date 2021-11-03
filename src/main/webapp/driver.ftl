@@ -92,8 +92,7 @@
         </div>
         <div class="button">
             <form action="/upload" method="post" enctype="multipart/form-data">
-                Change profile photo:
-                <input type="file" name="file"> <input type="submit" value="upload">
+                <input type="file" name="file"> <input type="submit" value="Сменить фото">
             </form>
         </div>
     </div>
@@ -154,7 +153,6 @@
         .profile__header p {
             margin: 20px 0;
         }
-        /*** Profile: Table ***/
         @media (min-width: 992px) {
             .profile__table tbody th {
                 width: 200px;
@@ -168,8 +166,8 @@
             }
         }
         .button {
-            margin-top: -50%;
-            margin-left: 75%;
+            margin-top: -40%;
+            margin-left: 25%;
         }
     </style>
 </@common.htmlTemplate>

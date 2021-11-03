@@ -144,3 +144,5 @@
         </style>
     </#macro>
 </head>
+<script>
+</script>

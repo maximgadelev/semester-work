@@ -19,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.text.CollationKey;
 
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
@@ -27,7 +28,13 @@ private final PassengerService passengerService = new PassengerServiceImpl();
 private final DriverService driverService = new DriverServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("login.ftl").forward(req,resp);
+        req.setAttribute("err", null);
+        if (req.getAttribute("err") != null) {
+       req.setAttribute("err","err");
+        }else{
+            req.setAttribute("err",null);
+        }
+        req.getRequestDispatcher("login.ftl").forward(req, resp);
     }
 
     @Override
@@ -38,21 +45,49 @@ private final DriverService driverService = new DriverServiceImpl();
             if(passenger!=null) {
                 if (password.equals(passenger.getPassword())) {
                     req.getSession().setAttribute("passenger", passenger);
+                    if (req.getParameter("remember") != null) {
+                        Cookie[] cookies = req.getCookies();
+                        if (cookies != null) {
+                            for (Cookie c : cookies) {
+                                c.setMaxAge(0);
+                                resp.addCookie(c);
+                            }
+                        }
+                        Cookie passengerCookie = new Cookie("id", String.valueOf(passenger.getId()));
+                        passengerCookie.setMaxAge(24 * 60 * 60);
+                        resp.addCookie(passengerCookie);
+                    }
                     resp.sendRedirect("/passenger");
                 }else{
-                    resp.sendRedirect("/login");
+                    req.setAttribute("err","error");
+                    req.getRequestDispatcher("login.ftl").forward(req,resp);
                 }
             }else {
                 DriverDto driver = driverService.getByLogin(login);
                 if (driver != null) {
                     if (password.equals(driver.getPassword())) {
                         req.getSession().setAttribute("driver", driver);
-                        resp.sendRedirect("/driver");
+                        if(req.getParameter("remember")!=null) {
+                            Cookie[] cookies = req.getCookies();
+                            if (cookies != null) {
+                                for (Cookie c : cookies) {
+                                    c.setMaxAge(0);
+                                    resp.addCookie(c);
+                                }
+                            }
+                            Cookie driverCookie = new Cookie("id",String.valueOf(driver.getId()));
+                            driverCookie.setMaxAge(24*60*60);
+                            resp.addCookie(driverCookie);
+                        }
+                            resp.sendRedirect("/driver");
+
                     } else {
-                        resp.sendRedirect("/login");
+                        req.setAttribute("err","error");
+                        req.getRequestDispatcher("login.ftl").forward(req,resp);
                     }
                 } else {
-                    resp.sendRedirect("/login");
+                    req.setAttribute("err","error");
+                    req.getRequestDispatcher("login.ftl").forward(req,resp);
                 }
             }
     }

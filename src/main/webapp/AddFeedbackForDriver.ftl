@@ -2,12 +2,13 @@
 <#import "/templates/common.ftl" as common>
 <@common.htmlTemplate pageName="addFeedBackForDriver">
     <form action="/addFeedbackForDriver" method="post">
-        <div id="txt1">Всего символов:<span>0</span></div>
-        /100
+        <div id="txt1">Cимволов из 100/<span>0</span></div>
         <textarea class="form-control" maxlength="100" name="feedback" id="txt" placeholder="Отзыв"
                   oninput="getTxt()"></textarea>
-        <input name="rating" type="number" placeholder="Оцените поездку от 1 до 5">
+        <div class="rating">
+        <input name="rating" type="number" placeholder="Оцените поездку от 1 до 5" required maxlength="1" minlength="5">
         <input type="submit" value="Сохранить отзыв">
+        </div>
     </form>
 
 
@@ -23,17 +24,21 @@
 
 
 <style>
-
-    textarea {
-        background: gray;
+    form{
+        margin-top: 20%;
+        margin-left:40%;
     }
-
-    label,
+    textarea {
+        background: #fffcfc;
+        resize: none;
+    }
     textarea {
         font-size: .8rem;
         letter-spacing: 1px;
     }
-
+.rating{
+    margin-top: 10px;
+}
     textarea {
         padding: 10px;
         max-width: 100%;

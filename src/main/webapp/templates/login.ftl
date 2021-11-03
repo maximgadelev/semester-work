@@ -3,6 +3,9 @@
 <head>
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
+        <#if err?has_content>
+                <h1>Неправильный логин или пароль!</h1>
+        </#if>
 <form action="/login" method ="post">
 
         <div class="form">
@@ -18,9 +21,7 @@
                 <div class="input-form-button">
                         <input type="submit" value="Войти">
                 </div>
-                <p id="pls" hidden="true" style="color:red">Введены неккоректные данные!</p>
             <input type="checkbox" name="remember" value="Запомнить меня">
-                <div id="help" hidden="true" style="color: red"><p>Ошибка</p></div>
         </div>
 </form>
 

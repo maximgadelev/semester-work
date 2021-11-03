@@ -40,6 +40,8 @@
                        </div>
                     </#list>
                 </#if>
+        <#else>
+        У вас пока нет поездок:(
             </#if>
 </@common.htmlTemplate>
 

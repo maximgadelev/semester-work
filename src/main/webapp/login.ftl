@@ -6,7 +6,6 @@
 
     <@navigation.unloggedUser/>
     <@login.loginTemplate/>
-
 </@common.htmlTemplate>
 
 
