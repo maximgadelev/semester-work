@@ -1,6 +1,5 @@
 package ru.kpfu.itis.gadelev.net.servlet;
 
-import ru.kpfu.itis.gadelev.net.dto.PassengerDto;
 import ru.kpfu.itis.gadelev.net.model.Driver;
 import ru.kpfu.itis.gadelev.net.model.Passenger;
 import ru.kpfu.itis.gadelev.net.service.DriverService;
@@ -10,10 +9,10 @@ import ru.kpfu.itis.gadelev.net.service.impl.PassengerServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import java.awt.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(urlPatterns = "/registration")
 public class RegisterServlet extends HttpServlet {

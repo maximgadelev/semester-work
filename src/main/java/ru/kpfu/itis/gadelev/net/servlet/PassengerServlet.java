@@ -1,20 +1,12 @@
 package ru.kpfu.itis.gadelev.net.servlet;
 
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
-import ru.kpfu.itis.gadelev.net.dto.PassengerDto;
-import ru.kpfu.itis.gadelev.net.helper.CloudinaryHelper;
-import ru.kpfu.itis.gadelev.net.helper.ImageHelper;
-import ru.kpfu.itis.gadelev.net.model.Passenger;
-import ru.kpfu.itis.gadelev.net.service.PassengerService;
-import ru.kpfu.itis.gadelev.net.service.impl.PassengerServiceImpl;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import java.io.File;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Map;
 
 @WebServlet(urlPatterns = "/passenger")
 public class
